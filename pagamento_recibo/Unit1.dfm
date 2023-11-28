@@ -162,6 +162,7 @@ object Form1: TForm1
         Height = 23
         TabOrder = 1
         OnChange = seTotalDescontoChange
+        OnKeyPress = seTotalDescontoKeyPress
       end
       object seTotalAcrescimo: TEdit
         Left = 248
@@ -170,6 +171,7 @@ object Form1: TForm1
         Height = 23
         TabOrder = 2
         OnChange = seTotalAcrescimoChange
+        OnKeyPress = seTotalAcrescimoKeyPress
       end
       object edTotalVenda: TEdit
         Left = 25
