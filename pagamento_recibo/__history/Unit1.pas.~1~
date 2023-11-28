@@ -58,6 +58,7 @@ type
     procedure ConfigurarPosPrinter;
     procedure AtualizarTotaisVendaNaInterface;
     procedure AdicionarLinhaImpressao(ALinha: String);
+    procedure AdicionarPagamento(const Indice: String; AValor: Double);
     procedure FinalizarVenda(const Indice: String; AValor: Double);
   public
 
@@ -164,6 +165,11 @@ begin
     Key := #0;
 end;
 
+procedure TForm1.AdicionarPagamento(const Indice: String; AValor: Double);
+begin
+  FinalizarVenda(Indice, aValor);
+end;
+
 procedure TForm1.AdicionarLinhaImpressao(ALinha: String);
 begin
   mImpressao.Lines.Add(ALinha);
@@ -202,7 +208,7 @@ begin
 
 
 
-      FinalizarVenda( cPagamentos[FormIncluirPagamento.cbFormaPagamento.ItemIndex, 0],
+      AdicionarPagamento( cPagamentos[FormIncluirPagamento.cbFormaPagamento.ItemIndex, 0],
                           AValor );
     end;
   finally

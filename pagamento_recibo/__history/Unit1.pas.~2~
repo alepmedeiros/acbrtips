@@ -58,7 +58,7 @@ type
     procedure ConfigurarPosPrinter;
     procedure AtualizarTotaisVendaNaInterface;
     procedure AdicionarLinhaImpressao(ALinha: String);
-    procedure FinalizarVenda(const Indice: String; AValor: Double);
+    procedure AdicionarPagamento(const Indice: String; AValor: Double);
   public
 
   end;
@@ -73,46 +73,8 @@ uses
 
 {$R *.dfm}
 
-procedure TForm1.FinalizarVenda(const Indice: String; AValor: Double);
-var
-  SL: TStringList;
-  i: Integer;
-  DoctoFiscalOk: Boolean;
-  MR: TModalResult;
-begin
-  SL := TStringList.Create;
-  try
-
-    SL.Add(PadCenter( ' COMPROVANTE DE OPERAÇÃO ', ACBrPosPrinter1.Colunas, '-'));
-    SL.Add('Número: <n>' + FormatFloat('000000',1) + '</n>');
-    SL.Add('Data/Hora: <n>' + FormatDateTimeBr(Now) + '</n>');
-    SL.Add('</linha_simples>');
-    SL.Add('');
-    SL.Add('Valor Inicial...: <n>' + FormatFloatBr(StrToFloatDef(seValorInicialVenda.Text,0)) + '</n>');
-    SL.Add('Total Descontos.: <n>' + FormatFloatBr(StrToFloatDef(seTotalDesconto.Text,0)) + '</n>');
-    SL.Add('Total Acréscimos: <n>' + FormatFloatBr(StrToFloatDef(seTotalAcrescimo.Text,0)) + '</n>');
-    SL.Add('</linha_simples>');
-    SL.Add('VALOR FINAL.....: <n>' + FormatFloatBr(StrToFloatDef(edTotalVenda.Text,0)) + '</n>');
-    SL.Add('');
-    SL.Add(PadCenter( ' Pagamentos ', ACBrPosPrinter1.Colunas, '-'));
-    SL.Add(PadSpace('DINHEIRO - '+ DescricaoTipoPagamento(Indice)+'|'+FormatFloatBr(AValor), ACBrPosPrinter1.Colunas, '|'));
-    SL.Add('</linha_simples>');
-
-    SL.Add('Total Pago......: <n>' + FormatFloatBr(StrToFloatDef(edTotalPago.Text,0)) + '</n>');
-    if (StrToFloatDef(edTroco.Text,0) > 0) then
-      SL.Add('Troco...........: <n>' + FormatFloatBr(StrToFloatDef(edTroco.Text,0)) + '</n>');
-
-    SL.Add('</linha_dupla>');
-    SL.Add('</corte>');
-    AdicionarLinhaImpressao(SL.Text);
-  finally
-    SL.Free;
-  end;
-end;
-
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  AtivarPosPrinter;
   seTotalAcrescimo.Text := FormatFloatBr(0);
   seTotalAcrescimo.SelStart := Length(seTotalAcrescimo.Text);
   seTotalDesconto.Text := FormatFloatBr(0);
@@ -164,6 +126,11 @@ begin
     Key := #0;
 end;
 
+procedure TForm1.AdicionarPagamento(const Indice: String; AValor: Double);
+begin
+  FinalizarVenda(Indice, aValor);
+end;
+
 procedure TForm1.AdicionarLinhaImpressao(ALinha: String);
 begin
   mImpressao.Lines.Add(ALinha);
@@ -202,7 +169,7 @@ begin
 
 
 
-      FinalizarVenda( cPagamentos[FormIncluirPagamento.cbFormaPagamento.ItemIndex, 0],
+      AdicionarPagamento( cPagamentos[FormIncluirPagamento.cbFormaPagamento.ItemIndex, 0],
                           AValor );
     end;
   finally
