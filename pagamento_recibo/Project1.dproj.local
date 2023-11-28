@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
-  <Transactions>
-    <Transaction>2023/11/28 07:11:07.556,=C:\repositorio\Unit1.pas</Transaction>
-    <Transaction>2023/11/28 07:55:37.869,C:\repositorio\acbrtips\pagamento_recibo\Unit1.dfm=C:\repositorio\Unit1.dfm</Transaction>
-    <Transaction>2023/11/28 07:55:37.869,C:\repositorio\acbrtips\pagamento_recibo\Unit1.pas=C:\repositorio\Unit1.pas</Transaction>
-    <Transaction>2023/11/28 07:55:41.380,C:\repositorio\acbrtips\Project1.dproj=C:\repositorio\Project1.dproj</Transaction>
+	<Transactions>
+    <Transaction>2023/11/28 07:11:07.000.556,=C:\repositorio\Unit1.pas</Transaction>
+    <Transaction>2023/11/28 07:55:37.000.869,C:\repositorio\acbrtips\pagamento_recibo\Unit1.pas=C:\repositorio\Unit1.pas</Transaction>
+    <Transaction>2023/11/28 07:55:37.000.869,C:\repositorio\acbrtips\pagamento_recibo\Unit1.dfm=C:\repositorio\Unit1.dfm</Transaction>
+    <Transaction>2023/11/28 07:55:41.000.380,C:\repositorio\acbrtips\Project1.dproj=C:\repositorio\Project1.dproj</Transaction>
+    <Transaction>2023/11/28 09:33:59.854,=C:\repositorio\acbrtips\pagamento_recibo\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>

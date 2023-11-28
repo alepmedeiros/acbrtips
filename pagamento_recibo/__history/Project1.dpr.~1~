@@ -2,7 +2,7 @@ program Project1;
 
 uses
   Vcl.Forms,
-  Unit1 in 'Unit1.pas' {Form1};
+  Unit1 in 'pagamento_recibo\Unit1.pas' {Form1};
 
 {$R *.res}
 
