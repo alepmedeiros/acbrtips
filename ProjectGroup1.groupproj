@@ -6,7 +6,7 @@
         <Projects Include="pagamento_recibo\Project1.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\ACBr\Exemplos\ACBrTEFD\NaoFiscal\Delphi\TEFDDemoNF.dproj">
+        <Projects Include="pagamento_recibo\novo\Delphi\ReciboPagamento.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -26,23 +26,23 @@
     <Target Name="Project1:Make">
         <MSBuild Projects="pagamento_recibo\Project1.dproj" Targets="Make"/>
     </Target>
-    <Target Name="TEFDDemoNF">
-        <MSBuild Projects="..\ACBr\Exemplos\ACBrTEFD\NaoFiscal\Delphi\TEFDDemoNF.dproj"/>
+    <Target Name="ReciboPagamento">
+        <MSBuild Projects="pagamento_recibo\novo\Delphi\ReciboPagamento.dproj"/>
     </Target>
-    <Target Name="TEFDDemoNF:Clean">
-        <MSBuild Projects="..\ACBr\Exemplos\ACBrTEFD\NaoFiscal\Delphi\TEFDDemoNF.dproj" Targets="Clean"/>
+    <Target Name="ReciboPagamento:Clean">
+        <MSBuild Projects="pagamento_recibo\novo\Delphi\ReciboPagamento.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="TEFDDemoNF:Make">
-        <MSBuild Projects="..\ACBr\Exemplos\ACBrTEFD\NaoFiscal\Delphi\TEFDDemoNF.dproj" Targets="Make"/>
+    <Target Name="ReciboPagamento:Make">
+        <MSBuild Projects="pagamento_recibo\novo\Delphi\ReciboPagamento.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Project1;TEFDDemoNF"/>
+        <CallTarget Targets="Project1;ReciboPagamento"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Project1:Clean;TEFDDemoNF:Clean"/>
+        <CallTarget Targets="Project1:Clean;ReciboPagamento:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Project1:Make;TEFDDemoNF:Make"/>
+        <CallTarget Targets="Project1:Make;ReciboPagamento:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
