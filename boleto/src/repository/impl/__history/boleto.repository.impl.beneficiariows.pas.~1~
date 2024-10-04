@@ -1,0 +1,39 @@
+unit boleto.repository.impl.beneficiariows;
+
+interface
+
+uses
+  boleto.repository.interfaces;
+
+type
+  TBeneficiarioWS<T: IInterface> = class(TInterfacedObject, IBeneficiarioWS<T>)
+  private
+    [weak]
+    FParent: T;
+
+    FClientID: String;
+    FClientSecret: String;
+    FKeyUser: String;
+    FScope: String;
+    FIndicadorPix: Boolean;
+
+    constructor Create(Parent: T);
+  public
+    class function New(Parent: T): IBeneficiarioWS<T>;
+
+    function ClientID(Value: String): IBeneficiarioWS<T>; overload;
+    function ClientID: String; overload;
+    function ClientSecret(Value: String): IBeneficiarioWS<T>; overload;
+    function ClientSecret: String; overload;
+    function KeyUser(Value: String): IBeneficiarioWS<T>; overload;
+    function KeyUser: String; overload;
+    function Scope(Value: String): IBeneficiarioWS<T>; overload;
+    function Scope: String; overload;
+    function IndicadorPix(Value: Boolean): IBeneficiarioWS<T>; overload;
+    function IndicadorPix: Boolean; overload;
+    function &End: T;
+  end;
+
+implementation
+
+end.

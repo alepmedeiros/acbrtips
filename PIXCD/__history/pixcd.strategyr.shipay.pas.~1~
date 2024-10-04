@@ -1,0 +1,48 @@
+unit pixcd.strategyr.shipay;
+
+interface
+
+uses
+  ACBrPIXCD,
+  ACBrPIXPSPShipay,
+  pixcd.interfaces;
+
+type
+  TStrategyShipay = class(TInterfacedObject, IStrategy)
+  private
+    FPSP: TACBrPSPShipay;
+
+    constructor Create;
+    destructor Destroy; override;
+  public
+    class function New: IStrategy;
+
+    function PSP: TACBrPSP;
+  end;
+
+implementation
+
+{ TStrategyShipay }
+
+constructor TStrategyShipay.Create;
+begin
+  FPSP := TACBrPSPShipay.Create(nil);
+end;
+
+destructor TStrategyShipay.Destroy;
+begin
+  FPSP.Free;
+  inherited;
+end;
+
+class function TStrategyShipay.New: IStrategy;
+begin
+  Result := Self.Create;
+end;
+
+function TStrategyShipay.PSP: TACBrPSP;
+begin
+  Result := FPSP;
+end;
+
+end.

@@ -17,9 +17,31 @@ uses
   Vcl.Buttons,
   Vcl.Grids,
   ACBrBase,
-  ACBrPosPrinter, utils;
+  ACBrPosPrinter, utils, system.Generics.Collections;
 
 type
+  TItensDTO = record
+    QUANTIDADE :Currency;
+    ITEM :Integer;
+    VALOR :Currency;
+    DESCONTO :Currency;
+    ACRESCIMO :Currency;
+    ValorTotal: Currency;
+    ID: Integer;
+    DESCRICAO: String;
+  end;
+
+  TVendaDTO = record
+    VALORTOTAL :Currency;
+    DESCONTO :Currency;
+    QUANTIDADE :Integer;
+    DATA: TDateTime;
+    formapagamento: String;
+    PAGO: Boolean;
+    Itens: TList<TItensDTO>;
+    class operator Initialize(out DEst: TVendaDTO);
+  end;
+
   TForm1 = class(TForm)
     Panel1: TPanel;
     pStatus: TPanel;
@@ -45,6 +67,7 @@ type
     btImprimir: TBitBtn;
     btLimparImpressora: TBitBtn;
     ACBrPosPrinter1: TACBrPosPrinter;
+    ComboBox1: TComboBox;
     procedure btEfetuarPagamentosClick(Sender: TObject);
     procedure seValorInicialVendaChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -76,34 +99,89 @@ uses
 procedure TForm1.FinalizarVenda(const Indice: String; AValor: Double);
 var
   SL: TStringList;
-  i: Integer;
   DoctoFiscalOk: Boolean;
   MR: TModalResult;
 begin
+  AtivarPosPrinter;
   SL := TStringList.Create;
   try
+    var lVenda: TVendaDTO;
+    lVenda.VALORTOTAL := 100;
+    lVenda.DESCONTO := 0;
+    lVenda.QUANTIDADE := 2;
+    lVenda.DATA := now;
+    lVenda.formapagamento := 'Dinheiro';
+    lVenda.PAGO := True;
 
-    SL.Add(PadCenter( ' COMPROVANTE DE OPERAÇÃO ', ACBrPosPrinter1.Colunas, '-'));
-    SL.Add('Número: <n>' + FormatFloat('000000',1) + '</n>');
-    SL.Add('Data/Hora: <n>' + FormatDateTimeBr(Now) + '</n>');
-    SL.Add('</linha_simples>');
-    SL.Add('');
-    SL.Add('Valor Inicial...: <n>' + FormatFloatBr(StrToFloatDef(seValorInicialVenda.Text,0)) + '</n>');
-    SL.Add('Total Descontos.: <n>' + FormatFloatBr(StrToFloatDef(seTotalDesconto.Text,0)) + '</n>');
-    SL.Add('Total Acréscimos: <n>' + FormatFloatBr(StrToFloatDef(seTotalAcrescimo.Text,0)) + '</n>');
-    SL.Add('</linha_simples>');
-    SL.Add('VALOR FINAL.....: <n>' + FormatFloatBr(StrToFloatDef(edTotalVenda.Text,0)) + '</n>');
-    SL.Add('');
-    SL.Add(PadCenter( ' Pagamentos ', ACBrPosPrinter1.Colunas, '-'));
-    SL.Add(PadSpace('DINHEIRO - '+ DescricaoTipoPagamento(Indice)+'|'+FormatFloatBr(AValor), ACBrPosPrinter1.Colunas, '|'));
-    SL.Add('</linha_simples>');
+    var lItens: TItensDTO;
 
-    SL.Add('Total Pago......: <n>' + FormatFloatBr(StrToFloatDef(edTotalPago.Text,0)) + '</n>');
-    if (StrToFloatDef(edTroco.Text,0) > 0) then
-      SL.Add('Troco...........: <n>' + FormatFloatBr(StrToFloatDef(edTroco.Text,0)) + '</n>');
+    lItens.QUANTIDADE := 1;
+    lItens.ITEM := 1;
+    lItens.VALOR := 50;
+    lItens.DESCONTO := 0;
+    lItens.ACRESCIMO := 0;
+    lItens.ValorTotal := 50;
+    lVenda.Itens.Add(lItens);
 
-    SL.Add('</linha_dupla>');
-    SL.Add('</corte>');
+    lItens.QUANTIDADE := 1;
+    lItens.ITEM := 2;
+    lItens.VALOR := 50;
+    lItens.DESCONTO := 0;
+    lItens.ACRESCIMO := 0;
+    lItens.ValorTotal := 50;
+    lVenda.Itens.Add(lItens);
+
+    SL.Add('</ce>');
+    SL.Add('<e>Leal Central das Peças</e>');
+    SL.Add('Avenida Getulio Vargas, 448 SALA:207');
+    SL.Add('Centro - Araruama RJ 28.979-129');
+    SL.Add('</pular_linhas>');
+    SL.Add('</pular_linhas>');
+    SL.Add('Comprovante de Venda');
+    SL.Add('</pular_linhas>');
+    SL.Add('</pular_linhas>');
+    SL.Add('<in>COMPROVANTE SEM VALOR FISCAL</in></fn>');
+    SL.Add('</pular_linhas>');
+    SL.Add('</linha_simples>');
+    SL.Add('</pular_linhas>');
+    SL.Add('Itens da Venda');
+    SL.Add('</linha_simples>');
+    SL.Add('| DESCRICAO           |  QTD  |UN| Vlr Unit | Vlr Total |');
+    SL.Add('</linha_simples>');
+    for var I := 0 to Pred(lVenda.Itens.Count) do
+      SL.Add('|<ae><c>'+lVenda.Itens[I].DESCRICAO+'</c></ae>|<ae><c>'+FormatCurr(',000', lVenda.Itens[I].QUANTIDADE)
+        +'</c></ae>|<ae><c>-</c></ae>'+'|<ae><c>'+FormatCurr(',0.00',lVenda.Itens[I].VALOR)+'</c></ae>|<ae><c>'+FormatCurr(',0.00',lVenda.Itens[I].ValorTotal)+'</c></ae>');
+    SL.Add('</pular_linhas>');
+    SL.Add('<ae>QTD. TOTAL DE ITENS</ae>'+'<ad>'+lVenda.QUANTIDADE.ToString+'</ad>');
+    SL.Add('<ae>VALOR TOTAL</ae>'+'<ad>'+FormatCurr(',0.00',lVenda.VALORTOTAL)+'<ad>');
+    SL.Add('<ae>VALOR DESCONTO</ae>'+'<ad>'+FormatCurr(',0.00',lVenda.DESCONTO)+'</ad>');
+    SL.Add('<ae>VALOR A PAGAR</ae>'+'<ad>'+FormatCurr(',0.00',lVenda.VALORTOTAL)+'</ad>');
+    SL.Add('<ae>TROCO</ae>'+'<ad>'+FormatCurr(',0.00',lVenda.VALORTOTAL)+'<ad>');
+    SL.Add('</pular_linhas>');
+    SL.Add('<ae>FORMA DE PAGAMENTO</ae>'+'<ad>VALOR PAGO</ad>');
+    SL.Add('<ae>'+lVenda.formapagamento+'</ae><ad>'+FormatCurr(',0.00',lVenda.VALORTOTAL)+'</ad>');
+
+//    SL.Add(PadCenter( ' COMPROVANTE DE OPERAÇÃO ', ACBrPosPrinter1.Colunas, '-'));
+//    SL.Add('Número: <n>' + FormatFloat('000000',1) + '</n>');
+//    SL.Add('Data/Hora: <n>' + FormatDateTimeBr(Now) + '</n>');
+//    SL.Add('</linha_simples>');
+//    SL.Add('');
+//    SL.Add('Valor Inicial...: <n>' + FormatFloatBr(StrToFloatDef(seValorInicialVenda.Text,0)) + '</n>');
+//    SL.Add('Total Descontos.: <n>' + FormatFloatBr(StrToFloatDef(seTotalDesconto.Text,0)) + '</n>');
+//    SL.Add('Total Acréscimos: <n>' + FormatFloatBr(StrToFloatDef(seTotalAcrescimo.Text,0)) + '</n>');
+//    SL.Add('</linha_simples>');
+//    SL.Add('VALOR FINAL.....: <n>' + FormatFloatBr(StrToFloatDef(edTotalVenda.Text,0)) + '</n>');
+//    SL.Add('');
+//    SL.Add(PadCenter( ' Pagamentos ', ACBrPosPrinter1.Colunas, '-'));
+//    SL.Add(PadSpace('DINHEIRO - '+ DescricaoTipoPagamento(Indice)+'|'+FormatFloatBr(AValor), ACBrPosPrinter1.Colunas, '|'));
+//    SL.Add('</linha_simples>');
+//
+//    SL.Add('Total Pago......: <n>' + FormatFloatBr(StrToFloatDef(edTotalPago.Text,0)) + '</n>');
+//    if (StrToFloatDef(edTroco.Text,0) > 0) then
+//      SL.Add('Troco...........: <n>' + FormatFloatBr(StrToFloatDef(edTroco.Text,0)) + '</n>');
+//
+//    SL.Add('</linha_dupla>');
+//    SL.Add('</corte>');
     AdicionarLinhaImpressao(SL.Text);
   finally
     SL.Free;
@@ -112,13 +190,19 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  AtivarPosPrinter;
   seTotalAcrescimo.Text := FormatFloatBr(0);
   seTotalAcrescimo.SelStart := Length(seTotalAcrescimo.Text);
   seTotalDesconto.Text := FormatFloatBr(0);
   seTotalDesconto.SelStart := Length(seTotalDesconto.Text);
   seTotalAcrescimo.Text := FormatFloatBr(0);
   seTotalAcrescimo.SelStart := Length(seTotalAcrescimo.Text);
+
+
+  ACBrPosPrinter1.Device.AcharPortasSeriais( ComboBox1.Items );
+  {$IfDef MSWINDOWS}
+  ACBrPosPrinter1.Device.AcharPortasUSB( ComboBox1.Items );
+  {$EndIf}
+  ACBrPosPrinter1.Device.AcharPortasRAW( ComboBox1.Items );
 end;
 
 procedure TForm1.seTotalAcrescimoChange(Sender: TObject);
@@ -212,13 +296,20 @@ end;
 
 procedure TForm1.ConfigurarPosPrinter;
 begin
-  ACBrPosPrinter1.Desativar;
-  ACBrPosPrinter1.Modelo := TACBrPosPrinterModelo(0);
-  ACBrPosPrinter1.PaginaDeCodigo := TACBrPosPaginaCodigo(2);
-  ACBrPosPrinter1.Porta := 'c:\temp\recibo.txt';
-  ACBrPosPrinter1.ColunasFonteNormal := 40;
-  ACBrPosPrinter1.LinhasEntreCupons := 0;
-  ACBrPosPrinter1.EspacoEntreLinhas := 0;
+//  ACBrPosPrinter1.Desativar;
+//  ACBrPosPrinter1.Modelo := TACBrPosPrinterModelo(0);
+//  ACBrPosPrinter1.PaginaDeCodigo := TACBrPosPaginaCodigo(2);
+//  ACBrPosPrinter1.Porta := ComboBox1.Text;
+//  ACBrPosPrinter1.ColunasFonteNormal := 48;
+//  ACBrPosPrinter1.LinhasEntreCupons := 0;
+//  ACBrPosPrinter1.EspacoEntreLinhas := 0;
+end;
+
+{ TVendaDTO }
+
+class operator TVendaDTO.Initialize(out DEst: TVendaDTO);
+begin
+DEst.Itens := TList<TItensDTO>.Create;
 end;
 
 end.

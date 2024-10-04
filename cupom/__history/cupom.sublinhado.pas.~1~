@@ -1,0 +1,48 @@
+unit cupom.sublinhado;
+
+interface
+
+uses
+  cupom.interfaces;
+
+type
+  TSublinhado = class(TInterfacedObject, ISublinhado)
+  private
+    FPrinter: IPrinter;
+
+    constructor Create(Printer: IPrinter);
+  public
+    class function New(Printer: IPrinter): ISublinhado;
+
+    function Value(aValue: String): ISublinhado;
+    function &End: IPrinter;
+  end;
+
+implementation
+
+{ TSublinhado }
+
+constructor TSublinhado.Create(Printer: IPrinter);
+begin
+  FPrinter := Printer;
+end;
+
+function TSublinhado.&End: IPrinter;
+begin
+  FPrinter.AddTexto('</s>');
+  Result := Self;
+end;
+
+class function TSublinhado.New(Printer: IPrinter): ISublinhado;
+begin
+  Result := Self.Create(Printer);
+end;
+
+function TSublinhado.Value(aValue: String): ISublinhado;
+begin
+  Result := Self;
+  FPrinter.AddTexto('<s>');
+  FPrinter.AddTexto(aValue);
+end;
+
+end.

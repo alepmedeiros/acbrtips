@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/02/06 08:40:46.000.279,=C:\repositorio\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 08:41:01.000.344,C:\repositorio\BoletoTDD.dproj=C:\repositorio\Project1.dproj</Transaction>
+    <Transaction>2024/02/06 08:42:04.000.764,C:\repositorio\acbrtips\boleto\boletotdd.boletoteste.pas=C:\repositorio\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 08:42:31.000.569,C:\repositorio\acbrtips\boleto\BoletoTDD.dproj=C:\repositorio\BoletoTDD.dproj</Transaction>
+    <Transaction>2024/02/06 08:42:51.000.316,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 08:49:32.000.452,C:\repositorio\acbrtips\boleto\src\component\boleto.component.interfaces.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 10:49:09.000.717,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 10:51:46.000.076,C:\repositorio\acbrtips\boleto\Unit1.pas=C:\repositorio\acbrtips\boleto\src\component\impl\boleto.component.boleto.impressao.pas</Transaction>
+    <Transaction>2024/02/06 10:53:08.000.869,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 11:05:49.000.462,C:\repositorio\acbrtips\boleto\Unit1.pas=C:\repositorio\acbrtips\boleto\src\usecase\boleto.usecase.interfaces.pas</Transaction>
+    <Transaction>2024/02/06 11:06:05.000.052,C:\repositorio\acbrtips\boleto\src\usecase\boleto.usecase.interfaces.pas=</Transaction>
+    <Transaction>2024/02/06 11:06:31.000.173,=C:\repositorio\acbrtips\boleto\src\repository\boleto.usecase.interfaces.pas</Transaction>
+    <Transaction>2024/02/06 11:06:43.000.241,C:\repositorio\acbrtips\boleto\src\repository\boleto.usecase.interfaces.pas=C:\repositorio\acbrtips\boleto\src\repository\boleto.repository.interfaces.pas</Transaction>
+    <Transaction>2024/02/06 11:37:06.297,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 11:39:15.185,C:\repositorio\acbrtips\boleto\src\component\impl\boleto.component.boleto.remessa.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 11:46:07.793,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 11:48:00.556,C:\repositorio\acbrtips\boleto\src\component\impl\boleto.component.boleto.retorno.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 12:03:29.352,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 12:06:31.856,C:\repositorio\acbrtips\boleto\src\repository\impl\boleto.repository.impl.titulo.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 12:39:21.965,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 13:12:15.962,C:\repositorio\acbrtips\boleto\src\repository\impl\boleto.repository.impl.sacado.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 13:16:56.622,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 13:20:27.052,C:\repositorio\acbrtips\boleto\src\repository\impl\boleto.repository.impl.boleto.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 13:26:56.049,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 13:49:14.533,C:\repositorio\acbrtips\boleto\src\repository\impl\boleto.repository.impl.beneficiario.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 13:49:26.774,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 13:54:10.855,C:\repositorio\acbrtips\boleto\src\repository\impl\boleto.repository.impl.banco.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 13:54:23.541,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 13:55:54.382,C:\repositorio\acbrtips\boleto\src\repository\impl\boleto.repository.impl.beneficiariows.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 13:58:37.663,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 14:01:10.894,C:\repositorio\acbrtips\boleto\src\repository\impl\boleto.repository.impl.webservice.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 14:01:29.404,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 14:08:28.805,C:\repositorio\acbrtips\boleto\src\repository\impl\boleto.repository.impl.email.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 14:08:38.429,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 14:13:21.228,C:\repositorio\acbrtips\boleto\src\repository\impl\boleto.repository.impl.configuracao.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 14:14:44.906,=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+    <Transaction>2024/02/06 14:21:49.246,C:\repositorio\acbrtips\boleto\src\component\impl\boleto.component.boleto.componet.pas=C:\repositorio\acbrtips\boleto\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

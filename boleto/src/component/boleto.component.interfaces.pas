@@ -1,0 +1,67 @@
+unit boleto.component.interfaces;
+
+interface
+
+uses
+  System.Classes,
+  System.Generics.Collections,
+  ACBrBase,
+  ACBrBoleto,
+  ACBrUtil,
+  ACBrMail,
+  ACBrUtil.FilesIO,
+  ACBrBoletoConversao,
+  ACBrBoletoRetorno, boleto.repository.interfaces;
+
+type
+  IImpressao = interface;
+  IRemessa = interface;
+  IRetorno = interface;
+
+  IComponent<T> = Interface
+    function CarregarBancos: TDictionary<Integer, String>;
+    function CarregarTipoDistribuicao: TDictionary<Integer, String>;
+    function CarregarCaracteristicaTitulo: TDictionary<Integer, String>;
+    function CarregarResponsavelEmissao: TDictionary<Integer, String>;
+    function CarregarTipoCarteira: TDictionary<Integer, String>;
+    function CarregarTipoDocumento: TDictionary<Integer, String>;
+    function CarregarSSLLib: TDictionary<Integer, String>;
+    function ZeraListaBoleto: IComponent<T>;
+    function AddBoletoIndividual: ITitulo;
+    function Configurar: IConfiguracao;
+    function Remessa: IRemessa;
+    function Retorno: IRetorno;
+    function Impressao: IImpressao;
+    function This: T;
+  End;
+
+  IImpressao = interface
+    function PathNomeArquivo(Value: string): IImpressao;
+    function CalcularNomeArquivoPDFIndividual(Value: Boolean): IImpressao;
+    function PdfSenha(Value: String): IImpressao;
+    function GerarHTML: IImpressao;
+    function GerarPDF: IImpressao;
+    function GerarPDFIndividual(Value: Integer): IImpressao;
+    function ImprimirStream(Value: TStream): IImpressao;
+    function Imprimir: IImpressao;
+  end;
+
+  IRemessa = interface
+    function DirArqRemessa(Value: String): IRemessa;
+    function NumeroRemessa(Value: Integer): IRemessa;
+    function GerarRemessa: IRemessa;
+  end;
+
+  IRetorno = interface
+    function DirArqRetorno(Value: String): IRetorno;
+    function NomeArqRetorno(Value: String): IRetorno;
+    function LerRetorno: IRetorno;
+  end;
+
+  IFactoryComponent = interface
+    function ACBrBoleto: IComponent<TACBrBoleto>;
+  end;
+
+implementation
+
+end.

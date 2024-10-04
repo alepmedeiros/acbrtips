@@ -1,0 +1,243 @@
+unit boleto.repository.impl.titulo;
+
+interface
+
+uses
+  System.Classes, boleto.repository.interfaces, boleto.component.interfaces;
+
+type
+  TTitulo = class(TInterfacedObject, ITitulo)
+  private
+    FConf: IFactoryComponent;
+
+    constructor Create(Conf: IFactoryComponent);
+  public
+    class function New(Conf: IFactoryComponent): ITitulo;
+
+    function Vencimento(Value: TDateTIme): ITitulo;
+    function DataDocumento(Value: TDateTime): ITitulo;
+    function NumeroDocumento(Value: String): ITitulo;
+    function EspecieDoc(Value: String): ITitulo;
+    function EspecieMod(Value: String): ITitulo;
+    function Aceite(value: Integer): ITitulo;
+    function DataProcessamento(Value: TDateTime): ITitulo;
+    function Carteira(Value: String): ITitulo;
+    function NossoNumero(value: String): ITitulo;
+    function ValorDocumento(Value: Currency): ITitulo;
+    function Sacado : ISacado<ITitulo>;
+    function ValorAbatimento(Value: Currency): ITitulo;
+    function LocalPagamento(Value: String): ITitulo;
+    function ValorMoraJuros(Value: Currency): ITitulo;
+    function ValorDesconto(Value: Currency): ITitulo;
+    function DataMoraJuros(Value: TDateTime): ITitulo;
+    function DataDesconto(Value: TDateTime): ITitulo;
+    function TipoDesconto(Value: Integer): ITitulo;
+    function DataAbatimento(Value: TDateTime): ITitulo;
+    function DataProtesto(Value: TDateTime): ITitulo;
+    function PercentualMulta(Value: Double): ITitulo;
+    function CodigoMoraJuros(Value: Integer): ITitulo;
+    function Mensagem(Value: String): ITitulo;
+    function OcorrenciaOriginal(Value: Integer): ITitulo;
+    function Instrucao1(value: String): ITitulo;
+    function Instrucao2(Value: string): ITitulo;
+    function QtdePagamentoParcial(Value: Integer): ITitulo;
+    function TipoPagamento(Value: Integer): ITitulo;
+    function PercentualMinPagamento(value: Currency): ITitulo;
+    function PercentualMaxPagamento(Value: Currency): ITitulo;
+    function ValorMinPagamento(Value: Currency): ITitulo;
+    function ValorMaxPagamento(Value: Currency): ITitulo;
+    function QrCode(value: String): ITitulo;
+    function Detalhamento(Value: TStrings): ITitulo;
+    function Verso(Value: boolean): ITitulo;
+  end;
+
+implementation
+
+{ TTitulo }
+
+function TTitulo.Aceite(value: Integer): ITitulo;
+begin
+
+end;
+
+function TTitulo.Carteira(Value: String): ITitulo;
+begin
+
+end;
+
+function TTitulo.CodigoMoraJuros(Value: Integer): ITitulo;
+begin
+
+end;
+
+constructor TTitulo.Create(Conf: IFactoryComponent);
+begin
+  FConf := Conf;
+end;
+
+function TTitulo.DataAbatimento(Value: TDateTime): ITitulo;
+begin
+
+end;
+
+function TTitulo.DataDesconto(Value: TDateTime): ITitulo;
+begin
+
+end;
+
+function TTitulo.DataDocumento(Value: TDateTime): ITitulo;
+begin
+
+end;
+
+function TTitulo.DataMoraJuros(Value: TDateTime): ITitulo;
+begin
+
+end;
+
+function TTitulo.DataProcessamento(Value: TDateTime): ITitulo;
+begin
+
+end;
+
+function TTitulo.DataProtesto(Value: TDateTime): ITitulo;
+begin
+
+end;
+
+function TTitulo.Detalhamento(Value: TStrings): ITitulo;
+begin
+
+end;
+
+function TTitulo.EspecieDoc(Value: String): ITitulo;
+begin
+
+end;
+
+function TTitulo.EspecieMod(Value: String): ITitulo;
+begin
+
+end;
+
+function TTitulo.Instrucao1(value: String): ITitulo;
+begin
+
+end;
+
+function TTitulo.Instrucao2(Value: string): ITitulo;
+begin
+
+end;
+
+function TTitulo.LocalPagamento(Value: String): ITitulo;
+begin
+
+end;
+
+function TTitulo.Mensagem(Value: String): ITitulo;
+begin
+
+end;
+
+class function TTitulo.New(Conf: IFactoryComponent): ITitulo;
+begin
+  Result := Self.Create(Conf);
+end;
+
+function TTitulo.NossoNumero(value: String): ITitulo;
+begin
+
+end;
+
+function TTitulo.NumeroDocumento(Value: String): ITitulo;
+begin
+
+end;
+
+function TTitulo.OcorrenciaOriginal(Value: Integer): ITitulo;
+begin
+
+end;
+
+function TTitulo.PercentualMaxPagamento(Value: Currency): ITitulo;
+begin
+
+end;
+
+function TTitulo.PercentualMinPagamento(value: Currency): ITitulo;
+begin
+
+end;
+
+function TTitulo.PercentualMulta(Value: Double): ITitulo;
+begin
+
+end;
+
+function TTitulo.QrCode(value: String): ITitulo;
+begin
+
+end;
+
+function TTitulo.QtdePagamentoParcial(Value: Integer): ITitulo;
+begin
+
+end;
+
+function TTitulo.Sacado: ISacado<ITitulo>;
+begin
+
+end;
+
+function TTitulo.TipoDesconto(Value: Integer): ITitulo;
+begin
+
+end;
+
+function TTitulo.TipoPagamento(Value: Integer): ITitulo;
+begin
+
+end;
+
+function TTitulo.ValorAbatimento(Value: Currency): ITitulo;
+begin
+
+end;
+
+function TTitulo.ValorDesconto(Value: Currency): ITitulo;
+begin
+
+end;
+
+function TTitulo.ValorDocumento(Value: Currency): ITitulo;
+begin
+
+end;
+
+function TTitulo.ValorMaxPagamento(Value: Currency): ITitulo;
+begin
+
+end;
+
+function TTitulo.ValorMinPagamento(Value: Currency): ITitulo;
+begin
+
+end;
+
+function TTitulo.ValorMoraJuros(Value: Currency): ITitulo;
+begin
+
+end;
+
+function TTitulo.Vencimento(Value: TDateTIme): ITitulo;
+begin
+
+end;
+
+function TTitulo.Verso(Value: boolean): ITitulo;
+begin
+
+end;
+
+end.

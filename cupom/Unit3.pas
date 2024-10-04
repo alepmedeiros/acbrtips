@@ -1,0 +1,226 @@
+unit Unit3;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  System.StrUtils,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Memo.Types,
+  FMX.StdCtrls,
+  FMX.Layouts,
+  FMX.ListBox,
+  FMX.Controls.Presentation,
+  FMX.ScrollBox,
+  FMX.Memo,
+  Data.DB,
+  Datasnap.DBClient,
+  cupom.interfaces,
+  ACBrBase,
+  ACBrPosPrinter;
+
+type
+  TForm3 = class(TForm)
+    Layout1: TLayout;
+    Layout2: TLayout;
+    Memo1: TMemo;
+    Button1: TButton;
+    Button2: TButton;
+    ClientDataSet1: TClientDataSet;
+    ClientDataSet1codigo: TIntegerField;
+    ClientDataSet1descricao: TStringField;
+    ClientDataSet1quantidade: TCurrencyField;
+    ClientDataSet1valorunitario: TCurrencyField;
+    ClientDataSet1total: TCurrencyField;
+    ListBox1: TListBox;
+    ACBrPosPrinter1: TACBrPosPrinter;
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    FPrinter: iPrinter;
+    procedure PopularListbox;
+    function addTexto(Value: String): TForm3;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+uses
+  ACBrUtil,
+  cupom.printer;
+
+{$R *.fmx}
+
+function TForm3.addTexto(Value: String): TForm3;
+begin
+  Memo1.Lines.Add(Value);
+end;
+
+procedure TForm3.Button1Click(Sender: TObject);
+begin
+  PopularListbox;
+
+  Memo1.Lines.Clear;
+  addTexto('</zera>');
+  addTexto('</linha_dupla>');
+  addTexto('</ce><e>Leal Central das Pecas</e>');
+  addTexto('Avenida Getulio Vargas, 448 SALA:207');
+  addTexto('Centro - Araruama RJ 28.979-129');
+  addTexto('</linha_simples>');
+  addTexto('');
+  addTexto('');
+  addTexto('<in><e>CUPOM SEM VALOR FISCAL</e></in></fn>');
+  addTexto('');
+  addTexto('');
+  addTexto('<n>Itens da Venda</n>');
+  addTexto('</linha_simples>');
+
+  var
+  lTotalGeral := 0.00;
+  // addTexto(PadSpace('#|DESC|QTD|VLR UNIT|VLR TOTAL|', ACBrPosPrinter1.ColunasFonteNormal, '|'));
+  addTexto('<n>' + PadRight('#    DESC', 20, ' ') + ' ' + PadRight('QTD', 7,
+    ' ') + ' ' + PadRight('VLR UNIT', 9, ' ') + ' ' + 'VLR TOTAL</n>');
+  addTexto('</linha_simples>');
+  ClientDataSet1.First;
+  while not ClientDataSet1.Eof do
+  begin
+    addTexto(PadSpace(ClientDataSet1codigo.AsInteger.ToString + '|' +
+      ClientDataSet1descricao.AsString + '|' + FormatFloatBr(msk6x3,
+      ClientDataSet1quantidade.AsFloat) + '|' + FormatFloatBr(msk7x2,
+      ClientDataSet1valorunitario.AsFloat) + '|' + FormatFloatBr(msk7x2,
+      ClientDataSet1total.AsFloat) + '|',
+      ACBrPosPrinter1.ColunasFonteNormal, '|'));
+
+    lTotalGeral := lTotalGeral + ClientDataSet1total.AsFloat;
+    ClientDataSet1.Next;
+  end;
+  addTexto('</linha_simples>');
+  addTexto(PadSpace('Qtd. Total de Itens|' + ClientDataSet1.FieldCount.ToString,
+    ACBrPosPrinter1.ColunasFonteNormal, '|'));
+  addTexto(PadSpace('Valor Total R$|' + FormatFloatBr(msk7x2, lTotalGeral),
+    ACBrPosPrinter1.ColunasFonteNormal, '|'));
+  addTexto(PadSpace('Valor Acrescimo R$|' + FormatFloatBr(msk7x2, 0),
+    ACBrPosPrinter1.ColunasFonteNormal, '|'));
+  addTexto(PadSpace('Valor Desconto R$|' + FormatFloatBr(msk7x2, 0),
+    ACBrPosPrinter1.ColunasFonteNormal, '|'));
+  addTexto('</linha_simples>');
+  addTexto('');
+  addTexto(PadSpace('FORMA DE PAGAMENTO|Valor',
+    ACBrPosPrinter1.ColunasFonteNormal, '|'));
+  addTexto('<n>');
+  addTexto(PadSpace('DINHEITO|' + FormatFloatBr(msk7x2, lTotalGeral),
+    ACBrPosPrinter1.ColunasFonteNormal, '|'));
+  addTexto('</n>');
+  addTexto('</corte_total>');
+
+  ACBrPosPrinter1.Ativar;
+  ACBrPosPrinter1.Buffer.Text := Memo1.Text;
+  ACBrPosPrinter1.TipoCorte := ctTotal;
+  ACBrPosPrinter1.Imprimir;
+end;
+
+procedure TForm3.Button2Click(Sender: TObject);
+begin
+  addTexto('</zera>');
+  addTexto('</linha_dupla>');
+  addTexto('FONTE NORMAL: ' + IntToStr(ACBrPosPrinter1.ColunasFonteNormal) +
+    ' Colunas');
+  addTexto(LeftStr
+    ('....+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8',
+    ACBrPosPrinter1.ColunasFonteNormal));
+  addTexto('<e>EXPANDIDO: ' + IntToStr(ACBrPosPrinter1.ColunasFonteExpandida) +
+    ' Colunas');
+  addTexto(LeftStr
+    ('....+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8',
+    ACBrPosPrinter1.ColunasFonteExpandida));
+  addTexto('</e><c>CONDENSADO: ' +
+    IntToStr(ACBrPosPrinter1.ColunasFonteCondensada) + ' Colunas');
+  addTexto(LeftStr
+    ('....+....1....+....2....+....3....+....4....+....5....+....6....+....7....+....8',
+    ACBrPosPrinter1.ColunasFonteCondensada));
+  addTexto('</c><n>FONTE NEGRITO</N>');
+  addTexto('<in>FONTE INVERTIDA</in>');
+  addTexto('<S>FONTE SUBLINHADA</s>');
+  addTexto('<i>FONTE ITALICO</i>');
+  addTexto('FONTE NORMAL');
+  addTexto('</linha_simples>');
+  addTexto('<n>LIGA NEGRITO');
+  addTexto('<i>LIGA ITALICO');
+  addTexto('<S>LIGA SUBLINHADA');
+  addTexto('<c>LIGA CONDENSADA');
+  addTexto('<e>LIGA EXPANDIDA');
+  addTexto('<a>LIGA ALTURA DUPLA');
+  addTexto('</fn>FONTE NORMAL');
+  addTexto('</linha_simples>');
+  addTexto('<e><n>NEGRITO E EXPANDIDA</n></e>');
+  addTexto('<c><n>NEGRITO E CONDENSADA</n></c>');
+  addTexto('<e><a>EXPANDIDA E ALT.DUPLA</a></e>');
+  addTexto('</fn>FONTE NORMAL');
+  addTexto('<in><e>INVERTIDA E EXPANDIDA</e></in>');
+  addTexto('<in><c>INVERTIDA E CONDENSADA</c></in>');
+  addTexto('<in><a>INVERTIDA E ALT.DUPLA</a></in>');
+  addTexto('</fn>FONTE NORMAL');
+  addTexto('</linha_simples>');
+  addTexto('</fb>FONTE TIPO B');
+  addTexto('</fn><n>FONTE NEGRITO</N>');
+  addTexto('<e>FONTE EXPANDIDA</e>');
+  addTexto('<a>FONTE ALT.DUPLA</a>');
+  addTexto('<in>FONTE INVERTIDA</in>');
+  addTexto('<S>FONTE SUBLINHADA</s>');
+  addTexto('<i>FONTE ITALICO</i>');
+  addTexto('</FA>FONTE TIPO A');
+  addTexto('</FN>FONTE NORMAL');
+  addTexto('</corte_total>');
+
+  ACBrPosPrinter1.Ativar;
+  ACBrPosPrinter1.Buffer.Text := Memo1.Lines.Text;
+  ACBrPosPrinter1.TipoCorte := ctTotal;
+  ACBrPosPrinter1.Imprimir;
+end;
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+  FPrinter := TPrinter.New;
+
+  ClientDataSet1.Open;
+  for var I := 1 to 5 do
+  begin
+    ClientDataSet1.Append;
+    ClientDataSet1codigo.Value := I;
+    ClientDataSet1descricao.AsString := 'NOME TESTE ' + I.ToString;
+    ClientDataSet1quantidade.AsFloat := (I * 0.25);
+    ClientDataSet1valorunitario.AsFloat := (I + 2);
+    ClientDataSet1total.AsFloat :=
+      (ClientDataSet1valorunitario.AsFloat * ClientDataSet1quantidade.AsFloat);
+    ClientDataSet1.Post;
+  end;
+end;
+
+procedure TForm3.PopularListbox;
+begin
+  ClientDataSet1.First;
+  while not ClientDataSet1.Eof do
+  begin
+    ListBox1.Items.Add(PadSpace(ClientDataSet1codigo.AsInteger.ToString + '|' +
+      ClientDataSet1descricao.AsString + '|' +
+      ClientDataSet1quantidade.AsCurrency.ToString + '|' +
+      ClientDataSet1valorunitario.AsCurrency.ToString + '|' +
+      ClientDataSet1total.AsCurrency.ToString, 100, '|'));
+    ClientDataSet1.Next;
+  end;
+end;
+
+end.

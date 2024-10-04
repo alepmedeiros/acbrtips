@@ -1,0 +1,145 @@
+unit cupom.interfaces;
+
+interface
+
+type 
+  IPrinter = interface;
+
+  IExpandir = interface
+    function Value(aValue: String): IExpandir;
+    function &End: IPrinter;
+  end;
+
+  IAlturaDupla = interface
+    function Value(aValue: String): IAlturaDupla;
+    function &End: IPrinter;
+  end;
+
+  INegrito = interface
+    function Value(aValue: String): INegrito;
+    function &End: IPrinter;
+  end;
+
+  ISublinhado = interface
+    function Value(aValue: String): ISublinhado;
+    function &End: IPrinter;
+  end;
+
+  ICondensado = interface
+    function Value(aValue: String): ICondensado;
+    function &End: IPrinter;
+  end;
+
+  IITalico = interface
+    function Value(aValue: String): IITalico;
+    function &End: IPrinter;
+  end;
+
+  IFonteInvertida = interface
+    function Value(aValue: String): IFonteInvertida;
+    function &End: IPrinter;
+  end;
+
+  IAlinhamentoEsquerda = interface
+    function Value(aValue: String): IAlinhamentoEsquerda;
+    function &End: IPrinter;
+  end;
+
+  IAlinhamentoDireita = interface
+    function Value(aValue: String): IAlinhamentoDireita;
+    function &End: IPrinter;
+  end;
+
+  IAlinhamentoCentro = interface
+    function Value(aValue: String): IAlinhamentoCentro;
+    function &End: IPrinter;
+  end;
+
+  IModoImpressaoPagina = interface
+    function Value(aValue: String): IModoImpressaoPagina;
+    function &End: IPrinter;
+  end;
+
+  IConfiguracao = interface
+    function ModeloImpressora(Value: Integer): IConfiguracao; overload;
+    function ModeloImpressora: Integer; overload;
+    function Porta(Value: String): IConfiguracao; overload;
+    function Porta: String; overload;
+    function Ativar(Value: Boolean): IConfiguracao; overload;
+    function Ativar: Boolean; overload;
+    function TipoCorte(Value: Integer): IConfiguracao; overload;
+    function TipoCorte: Integer; overload;
+    function &End: IPrinter;
+  end;
+  
+  IPrinter = interface
+    function AddTexto(Value: String): IPrinter;
+    function Expandido: IExpandir;
+    function AlturaDupla: IAlturaDupla;
+    function Negrito: INegrito;
+    function Sublinhado: ISublinhado;
+    function Condensado: ICondensado;
+    function Italico: IItalico;
+    function FonteNormal: IPrinter;
+    function FonteTipoA: IPrinter;
+    function FonteTipoB: IPrinter;
+    function FonteInvertida: IFonteInvertida;
+    function AlinhamentoEsquerda: IAlinhamentoEsquerda;
+    function AlinhamentoDireita: IAlinhamentoDireita;
+    function AlinhamentoCentro: IAlinhamentoCentro;
+    function LinhaSimples: IPrinter;
+    function LinhaDupla: IPrinter;
+    function Logo: IPrinter;
+    function Corte: IPrinter;
+    function CorteParcial: IPrinter;
+    function CorteTotal: IPrinter;
+    function AbreGaveta: IPrinter;
+    function Beep: IPrinter;
+    function Zera: IPrinter;
+    function PularProximaLinha: IPrinter;
+    function RetornaInicioLinha: IPrinter;
+    function Reset: IPrinter;
+    function CodigoBarrasEAN8: IPrinter;
+    function CodigoBarrasEAN13: IPrinter;
+    function CodigoBarrasInterleadev: IPrinter;
+    function CodigoBarrasCode11: IPrinter;
+    function CodigoBarrasCode39: IPrinter;    
+    function CodigoBarrasCode93: IPrinter;
+    function CodigoBarrasCode128: IPrinter;
+    function CodigoBarrasUPCA: IPrinter;
+    function CodigoBarrasUPCE: IPrinter;
+    function CodigoBarras: IPrinter;
+    function CodigoBarrasMSI: IPrinter;
+    function CodigoBarrasCode128a: IPrinter;
+    function CodigoBarrasCode128b: IPrinter;
+    function CodigoBarrasCode128c: IPrinter;
+    function QrCode: IPrinter;
+    function CodigoBarrasMostrarConteudo: IPrinter;
+    function CodigoBarrasLargura: IPrinter;
+    function CodigoBarrasAltura: IPrinter;
+    function QrCodeTipo: IPrinter;
+    function QrCodeLargua: IPrinter;
+    function QrCodeError: IPrinter;
+    function ImagemMonocromatica: IPrinter;
+    function ModoImpressaoPagina: IModoImpressaoPagina;
+    function ImprimirPagina: IPrinter;
+    function ModoPaginaDirecao: IPrinter;
+    function ModoPaginaEsquerda: IPrinter;
+    function ModoPaginaTopo: IPrinter;
+    function ModoPaginaLargura: IPrinter;
+    function ModoPaginaAltura: IPrinter;
+    function ModoEspaco: IPrinter;
+    function ModoImpressaoConfigurar: IPrinter;
+    function ImprimirLogo: IPrinter;
+    function LogoKc1: IPrinter;
+    function LogoKc2: IPrinter;
+    function LogoFatorX: IPrinter;
+    function LogoFatorY: IPrinter;
+    function IgnorarTags: IPrinter;
+    function Configuracao: IConfiguracao;
+    procedure Imprimir;
+  end;
+
+implementation
+
+end.

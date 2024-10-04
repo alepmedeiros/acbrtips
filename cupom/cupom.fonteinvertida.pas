@@ -1,0 +1,49 @@
+unit cupom.fonteinvertida;
+
+interface
+
+uses
+  cupom.interfaces;
+
+type
+  TFonteInvertida = class(TInterfacedObject, IFonteInvertida)
+  private
+    FPrinter: IPrinter;
+
+    constructor Create(Printer: IPrinter);
+  public
+    class function New(Printer: IPrinter): IFonteInvertida;
+
+    function Value(aValue: String): IFonteInvertida;
+    function &End: IPrinter;
+  end;
+
+implementation
+
+{ TFonteInvertida }
+
+constructor TFonteInvertida.Create(Printer: IPrinter);
+begin
+  FPrinter := Printer;
+end;
+
+function TFonteInvertida.&End: IPrinter;
+begin
+  FPrinter.AddTexto('</in>');
+  Result := FPrinter;
+end;
+
+class function TFonteInvertida.New(Printer: IPrinter): IFonteInvertida;
+begin
+  Result := Self.Create(Printer);
+end;
+
+function TFonteInvertida.Value(aValue: String): IFonteInvertida;
+begin
+  Result := Self;
+  FPrinter.AddTexto('<in>');
+  FPrinter.AddTexto(aValue);
+end;
+
+end.
+

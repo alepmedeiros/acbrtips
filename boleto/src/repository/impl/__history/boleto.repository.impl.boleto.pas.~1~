@@ -1,0 +1,33 @@
+unit boleto.repository.impl.boleto;
+
+interface
+
+uses
+  boleto.repository.interfaces;
+
+type
+  TBoleto<T: IInterface> = class(TInterfacedObject, IBoleto<T>)
+  private
+    [weak]
+    FParent: T;
+
+    constructor Create(Parent: T);
+  public
+    class function New(Parent: T): IBoleto<T>;
+  end;
+
+implementation
+
+{ TBoleto<T> }
+
+constructor TBoleto<T>.Create(Parent: T);
+begin
+  FParent := Parent;
+end;
+
+class function TBoleto<T>.New(Parent: T): IBoleto<T>;
+begin
+  Result := Self.Create(Parent);
+end;
+
+end.

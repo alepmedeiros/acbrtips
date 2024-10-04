@@ -1,0 +1,10 @@
+unit enumerados;
+
+interface
+
+type
+  TTipoPSP = ()
+
+implementation
+
+end.

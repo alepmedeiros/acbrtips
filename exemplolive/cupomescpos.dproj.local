@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2024/01/16 14:12:44.147,=C:\repositorio\Unit1.pas</Transaction>
+    <Transaction>2024/01/16 14:12:51.031,C:\repositorio\cupom.dproj=C:\repositorio\Project1.dproj</Transaction>
+    <Transaction>2024/01/16 14:12:59.062,C:\repositorio\cupomescpos.dproj=C:\repositorio\cupom.dproj</Transaction>
+    <Transaction>2024/01/16 14:13:14.788,C:\repositorio\acbrtips\exemplolive\Unit1.pas=C:\repositorio\Unit1.pas</Transaction>
+    <Transaction>2024/01/16 14:13:14.788,C:\repositorio\acbrtips\exemplolive\Unit1.fmx=C:\repositorio\Unit1.fmx</Transaction>
+    <Transaction>2024/01/16 14:13:16.650,C:\repositorio\acbrtips\exemplolive\cupomescpos.dproj=C:\repositorio\cupomescpos.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

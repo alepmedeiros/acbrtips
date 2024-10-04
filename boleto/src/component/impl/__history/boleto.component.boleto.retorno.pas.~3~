@@ -1,0 +1,82 @@
+unit boleto.component.boleto.retorno;
+
+interface
+
+uses
+  boleto.component.interfaces;
+
+type
+  TRetorno = class(TInterfacedObject, IRetorno)
+  private
+    FComp: IFactoryComponent;
+    FDir: string;
+    FNome: String;
+    FDirNome: String;
+
+    constructor Create(Comp: IFactoryComponent);
+  public
+    class function New(Comp: IFactoryComponent): IRetorno;
+
+    function DirArqRetorno(Value: String): IRetorno;
+    function NomeArqRetorno(Value: String): IRetorno;
+    function DirNomeArqProcessado(Value: String): IRetorno;
+    function LerRetorno: IRetorno;
+  end;
+
+implementation
+
+uses
+  SYstem.SysUtils,
+  System.Classes;
+
+constructor TRetorno.Create(Comp: IFactoryComponent);
+begin
+  FComp := Comp;
+end;
+
+function TRetorno.DirArqRetorno(Value: String): IRetorno;
+begin
+  Result := Self;
+  FDir := Value;
+  FComp.ACBrBoleto.This.DirArqRetorno := FDir;
+end;
+
+function TRetorno.DirNomeArqProcessado(Value: String): IRetorno;
+begin
+  REsult := Self;
+  FDirNome := Value;
+end;
+
+function TRetorno.LerRetorno: IRetorno;
+begin
+  Result := Self;
+  FComp.ACBrBoleto.This.ListadeBoletos.Clear;
+  FComp.ACBrBoleto.This.LerRetorno();
+
+  var lRetorno := FComp.ACBrBoleto.This.ListadeBoletos;
+  var lStrings := TStringList.Create;
+  try
+    for var I := 0 to Pred(lRetorno.Count) do
+    begin
+      lStrings.Add( 'Nosso Número :: '    + lRetorno[i].NossoNumero);
+      lStrings.Add( 'Valor Documento :: ' + CurrToStr(lRetorno[i].ValorDocumento));
+      lStrings.Add( 'Valor Pago :: '      + CurrToStr(lRetorno[i].ValorPago));
+      lStrings.Add( 'Data Ocorrencia :: ' + DateToStr(lRetorno[i].DataOcorrencia));
+    end;
+    lStrings.SaveToFile(FDirNome);
+  finally
+    lStrings.Free;
+  end;
+end;
+
+class function TRetorno.New(Comp: IFactoryComponent): IRetorno;
+begin
+  Result := Self.Create(Comp);
+end;
+
+function TRetorno.NomeArqRetorno(Value: String): IRetorno;
+begin
+  Result := Self;
+end;
+
+end.

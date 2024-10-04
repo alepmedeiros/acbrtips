@@ -1,0 +1,49 @@
+unit cupom.alinhamentoesquerda;
+
+interface
+
+uses
+  cupom.interfaces;
+
+type
+  TAlinhamentoEsquerda = class(TInterfacedObject, IAlinhamentoEsquerda)
+  private
+    FPrinter: IPrinter;
+
+    constructor Create(Printer: IPrinter);
+  public
+    class function New(Printer: IPrinter): IAlinhamentoEsquerda;
+
+    function Value(aValue: String): IAlinhamentoEsquerda;
+    function &End: IPrinter;
+  end;
+
+implementation
+
+{ TAlinhamentoEsquerda }
+
+constructor TAlinhamentoEsquerda.Create(Printer: IPrinter);
+begin
+  FPrinter := Printer;
+end;
+
+function TAlinhamentoEsquerda.&End: IPrinter;
+begin
+  FPrinter.AddTexto('</ae>');
+  Result := Self;
+end;
+
+class function TAlinhamentoEsquerda.New(Printer: IPrinter): IAlinhamentoEsquerda;
+begin
+  Result := Self.Create(Printer);
+end;
+
+function TAlinhamentoEsquerda.Value(aValue: String): IAlinhamentoEsquerda;
+begin
+  Result := Self;
+  FPrinter.AddTexto('<ae>');
+  FPrinter.AddTexto(aValue);
+end;
+
+end.
+

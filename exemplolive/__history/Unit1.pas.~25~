@@ -1,0 +1,188 @@
+unit Unit1;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Memo.Types,
+  FMX.Layouts,
+  FMX.ListBox,
+  FMX.StdCtrls,
+  FMX.Controls.Presentation,
+  FMX.ScrollBox,
+  FMX.Memo,
+  Data.DB,
+  Datasnap.DBClient,
+  ACBrBase,
+  ACBrPosPrinter;
+
+type
+  TForm1 = class(TForm)
+    ACBrPosPrinter1: TACBrPosPrinter;
+    ClientDataSet1: TClientDataSet;
+    ClientDataSet1codigo: TIntegerField;
+    ClientDataSet1descricao: TStringField;
+    ClientDataSet1quantidade: TCurrencyField;
+    ClientDataSet1valorunitario: TCurrencyField;
+    ClientDataSet1total: TCurrencyField;
+    Layout1: TLayout;
+    Memo1: TMemo;
+    Layout2: TLayout;
+    Button1: TButton;
+    Button2: TButton;
+    ListBox1: TListBox;
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    function AddTexto(Value: String): TForm1;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses
+  ACBrUtil;
+
+{$R *.fmx}
+
+function TForm1.AddTexto(Value: String): TForm1;
+begin
+  REsult := SElf;
+  Memo1.Lines.Add(Value);
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Memo1.Lines.Clear;
+  AddTexto('</zera>')
+  .AddTexto('</linha_dupla>')
+  .AddTexto('</ce><e>Academia do Codigo</e>')
+  .AddTexto('www.clubedosprogramadores.com.br')
+  .AddTexto('2299999999')
+  .AddTexto('</linha_simples>')
+  .AddTexto('')
+  .AddTexto('')
+  .AddTexto('<in><e>CUPOM SEM VALOR FISCAL</e></in></fn>')
+  .AddTexto('')
+  .AddTexto('')
+  .AddTexto('<n>ITENS DA VENDA</n>')
+  .AddTexto('</linha_simples>')
+  .AddTexto('<n>'+PadRight('#    DESC', 20, ' ') +
+            PadRight('QTD',7,' ')+' '+
+            PadRight('VLR UNIT', 9, ' ')+' '+
+            'VLR TOTAL</n>')
+  .AddTexto('</linha_simples>');
+
+  var lTotal := 0.00;
+
+  ClientDataSet1.First;
+  while not ClientDataSet1.Eof do
+  begin
+    AddTexto(
+        PadSpace(
+             ClientDataSet1codigo.AsInteger.ToString+'|'+
+             ClientDataSet1descricao.AsString+'|'+
+             FormatFloatBr(msk6x3,ClientDataSet1quantidade.AsCurrency)+'|'+
+             FormatFloatBr(msk7x2, ClientDataSet1valorunitario.AsCurrency)+'|'+
+             FormatFloatBr(msk7x2, ClientDataSet1total.AsCurrency)+'|',
+              ACBrPosPrinter1.ColunasFonteNormal, '|'));
+    lTotal := lTotal + ClientDataSet1total.AsCurrency;
+    ClientDataSet1.Next;
+  end;
+
+  AddTexto('</linha_simples>')
+  .AddTexto(PadSpace('Qtd. Total de itens|'+ClientDataSet1.FieldCount.ToString,
+            ACBrPosPrinter1.ColunasFonteNormal,'|'))
+  .AddTexto(PadSpace('Valor Total|'+'R$ '+FormatFloatBr(msk7x2, lTotal),
+            ACBrPosPrinter1.ColunasFonteNormal,'|'))
+  .AddTexto('</linha_simples>')
+  .AddTexto('')
+  .AddTexto(PadSpace('FORMA DE PAGAMENTO|VALOR',
+            ACBrPosPrinter1.ColunasFonteNormal,'|'))
+  .AddTexto('<n>')
+  .AddTexto(PadSpace('DINHEIRO|' + FormatFloatBr(msk7x2, lTotal),
+            ACBrPosPrinter1.ColunasFonteNormal,'|'))
+  .AddTexto('</n>')
+  .AddTexto('</corte_total>')
+
+  ACBrPosPrinter1.Ativar;
+  ACBrPosPrinter1.Buffer.Text := Memo1.Text;
+  ACBrPosPrinter1.Imprimir;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+//</zera>
+//</linha_dupla>
+//FONTE NORMAL: 48 Colunas
+//....+....1....+....2....+....3....+....4....+...
+//<e>EXPANDIDO: 24 Colunas
+//....+....1....+....2....
+//</e><c>CONDENSADO: 64 Colunas
+//....+....1....+....2....+....3....+....4....+....5....+....6....
+//</c><n>FONTE NEGRITO</N>
+//<in>FONTE INVERTIDA</in>
+//<S>FONTE SUBLINHADA</s>
+//<i>FONTE ITALICO</i>
+//FONTE NORMAL
+//</linha_simples>
+//<n>LIGA NEGRITO
+//<i>LIGA ITALICO
+//<S>LIGA SUBLINHADA
+//<c>LIGA CONDENSADA
+//<e>LIGA EXPANDIDA
+//<a>LIGA ALTURA DUPLA
+//</fn>FONTE NORMAL
+//</linha_simples>
+//<e><n>NEGRITO E EXPANDIDA</n></e>
+//<c><n>NEGRITO E CONDENSADA</n></c>
+//<e><a>EXPANDIDA E ALT.DUPLA</a></e>
+//</fn>FONTE NORMAL
+//<in><e>INVERTIDA E EXPANDIDA</e></in>
+//<in><c>INVERTIDA E CONDENSADA</c></in>
+//<in><a>INVERTIDA E ALT.DUPLA</a></in>
+//</fn>FONTE NORMAL
+//</linha_simples>
+//</fb>FONTE TIPO B
+//</fn><n>FONTE NEGRITO</N>
+//<e>FONTE EXPANDIDA</e>
+//<a>FONTE ALT.DUPLA</a>
+//<in>FONTE INVERTIDA</in>
+//<S>FONTE SUBLINHADA</s>
+//<i>FONTE ITALICO</i>
+//</FA>FONTE TIPO A
+//</FN>FONTE NORMAL
+//</corte_total>
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  ClientDataSet1.Open;
+  for var I := 1 to 5 do
+  begin
+    ClientDataSet1.Append;
+    ClientDataSet1codigo.Value := I;
+    ClientDataSet1descricao.AsString := 'NOME TESTE ' + I.ToString;
+    ClientDataSet1quantidade.AsFloat := (I * 0.25);
+    ClientDataSet1valorunitario.AsFloat := (I + 2);
+    ClientDataSet1total.AsFloat :=
+      (ClientDataSet1valorunitario.AsFloat * ClientDataSet1quantidade.AsFloat);
+    ClientDataSet1.Post;
+  end;
+end;
+
+end.

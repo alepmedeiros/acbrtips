@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A6701CF2-D464-4ACE-BF06-164FC9CA9BF3}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="..\..\ACBr\Exemplos\ACBrBoleto\Delphi\AcbrBoletoDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="BoletoTDD.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="AcbrBoletoDemo">
+        <MSBuild Projects="..\..\ACBr\Exemplos\ACBrBoleto\Delphi\AcbrBoletoDemo.dproj"/>
+    </Target>
+    <Target Name="AcbrBoletoDemo:Clean">
+        <MSBuild Projects="..\..\ACBr\Exemplos\ACBrBoleto\Delphi\AcbrBoletoDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AcbrBoletoDemo:Make">
+        <MSBuild Projects="..\..\ACBr\Exemplos\ACBrBoleto\Delphi\AcbrBoletoDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BoletoTDD">
+        <MSBuild Projects="BoletoTDD.dproj"/>
+    </Target>
+    <Target Name="BoletoTDD:Clean">
+        <MSBuild Projects="BoletoTDD.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BoletoTDD:Make">
+        <MSBuild Projects="BoletoTDD.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="AcbrBoletoDemo;BoletoTDD"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="AcbrBoletoDemo:Clean;BoletoTDD:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="AcbrBoletoDemo:Make;BoletoTDD:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -1,0 +1,47 @@
+unit boleto.component.boleto.remessa;
+
+interface
+
+uses
+  boleto.component.interfaces;
+
+type
+  TRemessa = class(TInterfacedObject, IRemessa)
+  private
+    FComp: IFactoryComponent;
+    FDir: String;
+
+    constructor Create(Comp: IFactoryComponent);
+  public
+    class function New(Comp: IFactoryComponent): IRemessa;
+
+    function DirArqRemessa(Value: String): IRemessa;
+    function GerarRemessa: IRemessa;
+  end;
+
+implementation
+
+{ TRemessa }
+
+constructor TRemessa.Create(Comp: IFactoryComponent);
+begin
+  FComp := Comp;
+end;
+
+function TRemessa.DirArqRemessa(Value: String): IRemessa;
+begin
+  Result := Self;
+  FDir := Value;
+end;
+
+function TRemessa.GerarRemessa: IRemessa;
+begin
+
+end;
+
+class function TRemessa.New(Comp: IFactoryComponent): IRemessa;
+begin
+
+end;
+
+end.

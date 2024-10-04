@@ -1,0 +1,90 @@
+unit boleto.repository.impl.sacado;
+
+interface
+
+uses
+  boleto.repository.interfaces,
+  boleto.component.interfaces;
+
+type
+  TSacado = class(TInterfacedObject, ISacado)
+  private
+    FParent: ITitulo;
+
+    constructor Create(Parent: ITitulo);
+  public
+    class function New(Parent: ITitulo): ISacado;
+
+    function NomeSacado(Value: String): ISacado;
+    function CNPJCPF(value: String): ISacado;
+    function Logradouro(Value: string): ISacado;
+    function Numero(Value: String): ISacado;
+    function Bairro(Value: string): ISacado;
+    function Cidade(value: String): ISacado;
+    function UF(Value: String): ISacado;
+    function CEP(Value: String): ISacado;
+    function &End: ITitulo;
+  end;
+
+implementation
+
+
+{ TSacado }
+
+function TSacado.Bairro(Value: string): ISacado;
+begin
+  Result := Self;
+  FConf.ACBrBoleto.
+end;
+
+function TSacado.CEP(Value: String): ISacado;
+begin
+
+end;
+
+function TSacado.Cidade(value: String): ISacado;
+begin
+
+end;
+
+function TSacado.CNPJCPF(value: String): ISacado;
+begin
+
+end;
+
+constructor TSacado.Create(Parent: ITitulo);
+begin
+  FParent := Parent;
+end;
+
+function TSacado.&End: ITitulo;
+begin
+  Result := FParent;
+end;
+
+function TSacado.Logradouro(Value: string): ISacado;
+begin
+
+end;
+
+class function TSacado.New(Parent: ITitulo): ISacado;
+begin
+  Result := Self.Create(Parent);
+end;
+
+function TSacado.NomeSacado(Value: String): ISacado;
+begin
+
+end;
+
+function TSacado.Numero(Value: String): ISacado;
+begin
+
+end;
+
+function TSacado.UF(Value: String): ISacado;
+begin
+
+end;
+
+end.

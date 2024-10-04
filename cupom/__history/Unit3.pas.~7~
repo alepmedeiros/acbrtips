@@ -1,0 +1,75 @@
+unit Unit3;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Memo.Types,
+  FMX.StdCtrls, FMX.Layouts, FMX.ListBox, FMX.Controls.Presentation,
+  FMX.ScrollBox, FMX.Memo, Data.DB, Datasnap.DBClient;
+
+type
+  TForm3 = class(TForm)
+    Layout1: TLayout;
+    Layout2: TLayout;
+    Memo1: TMemo;
+    Button1: TButton;
+    Button2: TButton;
+    ClientDataSet1: TClientDataSet;
+    ClientDataSet1codigo: TIntegerField;
+    ClientDataSet1descricao: TStringField;
+    ClientDataSet1quantidade: TCurrencyField;
+    ClientDataSet1valorunitario: TCurrencyField;
+    ClientDataSet1total: TCurrencyField;
+    ListBox1: TListBox;
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+  private
+    procedure PopularListbox;
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.fmx}
+
+procedure TForm3.Button1Click(Sender: TObject);
+begin
+PopularListbox;
+end;
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+  ClientDataSet1.Open;
+  for var I := 1 to 5 do
+  begin
+    ClientDataSet1.Append;
+    ClientDataSet1codigo.Value := I;
+    ClientDataSet1descricao.AsString := 'NOME TESTE ' + I.ToString;
+    ClientDataSet1quantidade.AsFloat := (I * 0.25);
+    ClientDataSet1valorunitario.AsFloat := (I + 2);
+    ClientDataSet1total.AsFloat :=
+      (ClientDataSet1valorunitario.AsFloat * ClientDataSet1quantidade.AsFloat);
+    ClientDataSet1.Post;
+  end;
+end;
+
+procedure TForm3.PopularListbox;
+begin
+  ClientDataSet1.First;
+  while not ClientDataSet1.Eof do
+  begin
+    ListBox1.Items.Add(ClientDataSet1codigo.AsInteger.ToString+' | '+
+                       ClientDataSet1descricao.AsString+' | '+
+                       ClientDataSet1quantidade.AsCurrency.ToString+' | '+
+                       ClientDataSet1valorunitario.AsCurrency.ToString+' | '+
+                       ClientDataSet1total.AsCurrency.ToString);
+    ClientDataSet1.Next;
+  end;
+end;
+
+end.

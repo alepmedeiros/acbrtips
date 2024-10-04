@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/02/06 08:42:44.000.453,C:\repositorio\acbrtips\boleto\boleto.groupproj=C:\repositorio\ProjectGroup1.groupproj</Transaction>
+  </Transactions>
+	<Default.Personality>
+		<Projects ActiveProject="C:\repositorio\api-nfcfiscal\apinfe\apifiscalnfe.dproj"/>
+	</Default.Personality>
+</BorlandProject>

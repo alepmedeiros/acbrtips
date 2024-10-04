@@ -1,0 +1,153 @@
+unit boleto.repository.impl.email;
+
+interface
+
+uses
+  boleto.repository.interfaces;
+
+type
+  TEmail<T: IInterface> = class(TInterfacedObject, IEmail<T>)
+  private
+    [weak]
+    FParent: T;
+
+    FFrom: String;
+    FFromName: Integer;
+    FHost: string;
+    FPort: String;
+    FSetTLS: Boolean;
+    FSetSSL: Boolean;
+    FUsername: String;
+    FPassword: String;
+
+    constructor Create(Paret: T);
+  public
+    class function New(Parent: T): IEmail<T>;
+
+    function From(Value: String): IEmail<T>; overload;
+    function From: String; overload;
+    function FromName(Value: Integer): IEmail<T>; overload;
+    function FromName: Integer; overload;
+    function Host(Value: string): IEmail<T>; overload;
+    function Host: string; overload;
+    function Port(Value: String): IEmail<T>; overload;
+    function Port: String; overload;
+    function SetTLS(Value: Boolean): IEmail<T>; overload;
+    function SetTLS: Boolean; overload;
+    function SetSSL(Value: Boolean): IEmail<T>; overload;
+    function SetSSL: Boolean; overload;
+    function Username(Value: String): IEmail<T>; overload;
+    function Username: String; overload;
+    function Password(Value: String): IEmail<T>; overload;
+    function Password: String; overload;
+    function &End: T;
+  end;
+
+implementation
+
+{ TEmail<T> }
+
+constructor TEmail<T>.Create(Paret: T);
+begin
+  FParent := Paret;
+end;
+
+function TEmail<T>.&End: T;
+begin
+  REsult := FParent;
+end;
+
+function TEmail<T>.From(Value: String): IEmail<T>;
+begin
+  REsult := Self;
+  FFrom := VAlue;
+end;
+
+function TEmail<T>.From: String;
+begin
+  REsult := FFrom;
+end;
+
+function TEmail<T>.FromName(Value: Integer): IEmail<T>;
+begin
+  REsult := Self;
+  FFromName := VAlue;
+end;
+
+function TEmail<T>.FromName: Integer;
+begin
+  REsult := FFromName;
+end;
+
+function TEmail<T>.Host: string;
+begin
+  REsult := FHost;
+end;
+
+function TEmail<T>.Host(Value: string): IEmail<T>;
+begin
+  REsult := Self;
+  FHost := VAlue;
+end;
+
+class function TEmail<T>.New(Parent: T): IEmail<T>;
+begin
+  Result := Self.Create(Parent);
+end;
+
+function TEmail<T>.Password(Value: String): IEmail<T>;
+begin
+  REsult := Self;
+  FPassword := VAlue;
+end;
+
+function TEmail<T>.Password: String;
+begin
+  REsult := FPassword;
+end;
+
+function TEmail<T>.Port(Value: String): IEmail<T>;
+begin
+  REsult := Self;
+  FPort := VAlue;
+end;
+
+function TEmail<T>.Port: String;
+begin
+  REsult := FPort;
+end;
+
+function TEmail<T>.SetSSL: Boolean;
+begin
+  REsult := FSetTLS;
+end;
+
+function TEmail<T>.SetSSL(Value: Boolean): IEmail<T>;
+begin
+  REsult := Self;
+  FSetTLS := VAlue;
+end;
+
+function TEmail<T>.SetTLS: Boolean;
+begin
+  REsult := FSetTLS ;
+end;
+
+function TEmail<T>.SetTLS(Value: Boolean): IEmail<T>;
+begin
+  REsult := Self;
+  FSetTLS := VAlue;
+end;
+
+function TEmail<T>.Username(Value: String): IEmail<T>;
+begin
+  REsult := Self;
+  FUsername := VAlue;
+end;
+
+function TEmail<T>.Username: String;
+begin
+  REsult := FUsername;
+end;
+
+end.

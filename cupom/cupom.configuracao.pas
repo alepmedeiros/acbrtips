@@ -1,0 +1,96 @@
+unit cupom.configuracao;
+
+interface
+
+uses
+  cupom.interfaces;
+
+type
+  TConfiguracao = class(TInterfacedObject, IConfiguracao)
+  private
+    FPrinter: IPrinter;
+    FModelo: Integer;
+    FPorta: String;
+    FAtivar: Boolean;
+    FTipoCorte: Integer;
+
+    constructor Create(Printer: IPrinter);
+  public
+    class function New(Printer: IPrinter): IConfiguracao;
+
+    function ModeloImpressora(Value: Integer): IConfiguracao; overload;
+    function ModeloImpressora: Integer; overload;
+    function Porta(Value: String): IConfiguracao; overload;
+    function Porta: String; overload;
+    function Ativar(Value: Boolean): IConfiguracao; overload;
+    function Ativar: Boolean; overload;
+    function TipoCorte(Value: Integer): IConfiguracao; overload;
+    function TipoCorte: Integer; overload;
+    function &End: IPrinter;
+  end;
+
+implementation
+
+{ TConfiguracao }
+
+function TConfiguracao.Ativar(Value: Boolean): IConfiguracao;
+begin
+  Result := SElf;
+  FAtivar := Value;
+end;
+
+function TConfiguracao.Ativar: Boolean;
+begin
+  Result := FAtivar;
+end;
+
+constructor TConfiguracao.Create(Printer: IPrinter);
+begin
+  FPrinter := Printer;
+end;
+
+function TConfiguracao.&End: IPrinter;
+begin
+  Result := FPrinter;
+end;
+
+function TConfiguracao.ModeloImpressora(Value: Integer): IConfiguracao;
+begin
+  Result := SElf;
+  FModelo := Value;
+end;
+
+function TConfiguracao.ModeloImpressora: Integer;
+begin
+  Result := FModelo;
+end;
+
+class function TConfiguracao.New(Printer: IPrinter): IConfiguracao;
+begin
+  Result := Self.Create(Printer);
+end;
+
+function TConfiguracao.Porta: String;
+begin
+  Result := FPorta;
+end;
+
+function TConfiguracao.Porta(Value: String): IConfiguracao;
+begin
+  Result := Self;
+  FPOrta := Value;
+end;
+
+function TConfiguracao.TipoCorte(Value: Integer): IConfiguracao;
+begin
+  REsult := Self;
+  FTipoCorte := Value;
+end;
+
+function TConfiguracao.TipoCorte: Integer;
+begin
+  REsult := FTipoCorte;
+end;
+
+end.
+

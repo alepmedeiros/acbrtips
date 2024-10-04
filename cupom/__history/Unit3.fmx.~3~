@@ -1,0 +1,107 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Form3'
+  ClientHeight = 548
+  ClientWidth = 1023
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Layout1: TLayout
+    Align = Right
+    Position.X = 608.000000000000000000
+    Size.Width = 415.000000000000000000
+    Size.Height = 548.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Memo1: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      StyledSettings = [Family, Style, FontColor]
+      TextSettings.Font.Size = 15.000000000000000000
+      Align = Client
+      Size.Width = 415.000000000000000000
+      Size.Height = 548.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Viewport.Width = 411.000000000000000000
+      Viewport.Height = 544.000000000000000000
+    end
+  end
+  object Layout2: TLayout
+    Align = Client
+    Size.Width = 608.000000000000000000
+    Size.Height = 548.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    OnClick = Layout2Click
+    object ListBox1: TListBox
+      Align = Bottom
+      Position.Y = 171.000000000000000000
+      Size.Width = 608.000000000000000000
+      Size.Height = 377.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 604.000000000000000000
+      Viewport.Height = 373.000000000000000000
+    end
+    object Button1: TButton
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 73.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'Imprimir Cupom'
+      TextSettings.Font.Size = 15.000000000000000000
+      TextSettings.Trimming = None
+    end
+    object Button2: TButton
+      StyledSettings = [Family, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 89.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 64.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Imprimir Tags Formata'#231#227'o'
+      TextSettings.Font.Size = 15.000000000000000000
+      TextSettings.Trimming = None
+    end
+  end
+  object ClientDataSet1: TClientDataSet
+    PersistDataPacket.Data = {
+      BA0000009619E0BD010000001800000005000000000003000000BA0006636F64
+      69676F04000100000000000964657363726963616F0100490000000100055749
+      4454480200020014000A7175616E746964616465080004000000010007535542
+      545950450200490006004D6F6E6579000D76616C6F72756E69746172696F0800
+      04000000010007535542545950450200490006004D6F6E65790005746F74616C
+      080004000000010007535542545950450200490006004D6F6E6579000000}
+    Active = True
+    Aggregates = <>
+    Params = <>
+    Left = 464
+    Top = 80
+    object ClientDataSet1codigo: TIntegerField
+      FieldName = 'codigo'
+    end
+    object ClientDataSet1descricao: TStringField
+      FieldName = 'descricao'
+    end
+    object ClientDataSet1quantidade: TCurrencyField
+      FieldName = 'quantidade'
+    end
+    object ClientDataSet1valorunitario: TCurrencyField
+      FieldName = 'valorunitario'
+    end
+    object ClientDataSet1total: TCurrencyField
+      FieldName = 'total'
+    end
+  end
+end

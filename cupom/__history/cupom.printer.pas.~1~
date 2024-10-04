@@ -1,0 +1,417 @@
+unit cupom.printer;
+
+interface
+
+uses
+  System.Classes,
+  cupom.interfaces;
+
+type
+  TPrinter = class(TInterfacedObject, IPrinter)
+  private
+    FTexto: TStringList;
+  public
+    class function New: IPrinter;
+
+    function AddTexto(Value: String): IPrinter;
+    function Expandido: IExpandir;
+    function AlturaDupla: IAlturaDupla;
+    function Negrito: INegrito;
+    function Sublinhado: ISublinhado;
+    function Condensado: ICondensado;
+    function Italico: IItalico;
+    function FonteNormal: IPrinter;
+    function FonteTipoA: IPrinter;
+    function FonteTipoB: IPrinter;
+    function FonteInvertida: IFonteInvertida;
+    function AlinhamentoEsquerda: IAlinhamentoEsquerda;
+    function AlinhamentoDireita: IAlinhamentoDireita;
+    function AlinhamentoCentro: IAlinhamentoCentro;
+    function LinhaSimples: IPrinter;
+    function LinhaDupla: IPrinter;
+    function Logo: IPrinter;
+    function Corte: IPrinter;
+    function CorteParcial: IPrinter;
+    function CorteTotal: IPrinter;
+    function AbreGaveta: IPrinter;
+    function Beep: IPrinter;
+    function Zera: IPrinter;
+    function PularProximaLinha: IPrinter;
+    function RetornaInicioLinha: IPrinter;
+    function Reset: IPrinter;
+    function CodigoBarrasEAN8: IPrinter;
+    function CodigoBarrasEAN13: IPrinter;
+    function CodigoBarrasInterleadev: IPrinter;
+    function CodigoBarrasCode11: IPrinter;
+    function CodigoBarrasCode39: IPrinter;
+    function CodigoBarrasCode93: IPrinter;
+    function CodigoBarrasCode128: IPrinter;
+    function CodigoBarrasUPCA: IPrinter;
+    function CodigoBarrasUPCE: IPrinter;
+    function CodigoBarras: IPrinter;
+    function CodigoBarrasMSI: IPrinter;
+    function CodigoBarrasCode128a: IPrinter;
+    function CodigoBarrasCode128b: IPrinter;
+    function CodigoBarrasCode128c: IPrinter;
+    function QrCode: IPrinter;
+    function CodigoBarrasMostrarConteudo: IPrinter;
+    function CodigoBarrasLargura: IPrinter;
+    function CodigoBarrasAltura: IPrinter;
+    function QrCodeTipo: IPrinter;
+    function QrCodeLargua: IPrinter;
+    function QrCodeError: IPrinter;
+    function ImagemMonocromatica: IPrinter;
+    function ModoImpressaoPagina: IModoImpressaoPagina;
+    function ImprimirPagina: IPrinter;
+    function ModoPaginaDirecao: IPrinter;
+    function ModoPaginaEsquerda: IPrinter;
+    function ModoPaginaTopo: IPrinter;
+    function ModoPaginaLargura: IPrinter;
+    function ModoPaginaAltura: IPrinter;
+    function ModoEspaco: IPrinter;
+    function ModoImpressaoConfigurar: IPrinter;
+    function ImprimirLogo: IPrinter;
+    function LogoKc1: IPrinter;
+    function LogoKc2: IPrinter;
+    function LogoFatorX: IPrinter;
+    function LogoFatorY: IPrinter;
+    function IfnorarTags: IPrinter;
+    function Configuracao: IConfiguracao;
+    procedure Imprimir;
+  end;
+
+implementation
+
+{ TPrinter }
+
+function TPrinter.AbreGaveta: IPrinter;
+begin
+
+end;
+
+function TPrinter.AddTexto(Value: String): IPrinter;
+begin
+
+end;
+
+function TPrinter.AlinhamentoCentro: IAlinhamentoCentro;
+begin
+
+end;
+
+function TPrinter.AlinhamentoDireita: IAlinhamentoDireita;
+begin
+
+end;
+
+function TPrinter.AlinhamentoEsquerda: IAlinhamentoEsquerda;
+begin
+
+end;
+
+function TPrinter.AlturaDupla: IAlturaDupla;
+begin
+
+end;
+
+function TPrinter.Beep: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarras: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasAltura: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasCode11: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasCode128: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasCode128a: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasCode128b: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasCode128c: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasCode39: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasCode93: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasEAN13: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasEAN8: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasInterleadev: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasLargura: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasMostrarConteudo: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasMSI: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasUPCA: IPrinter;
+begin
+
+end;
+
+function TPrinter.CodigoBarrasUPCE: IPrinter;
+begin
+
+end;
+
+function TPrinter.Condensado: ICondensado;
+begin
+
+end;
+
+function TPrinter.Configuracao: IConfiguracao;
+begin
+
+end;
+
+function TPrinter.Corte: IPrinter;
+begin
+
+end;
+
+function TPrinter.CorteParcial: IPrinter;
+begin
+
+end;
+
+function TPrinter.CorteTotal: IPrinter;
+begin
+
+end;
+
+function TPrinter.Expandido: IExpandir;
+begin
+
+end;
+
+function TPrinter.FonteInvertida: IFonteInvertida;
+begin
+
+end;
+
+function TPrinter.FonteNormal: IPrinter;
+begin
+
+end;
+
+function TPrinter.FonteTipoA: IPrinter;
+begin
+
+end;
+
+function TPrinter.FonteTipoB: IPrinter;
+begin
+
+end;
+
+function TPrinter.IfnorarTags: IPrinter;
+begin
+
+end;
+
+function TPrinter.ImagemMonocromatica: IPrinter;
+begin
+
+end;
+
+procedure TPrinter.Imprimir;
+begin
+
+end;
+
+function TPrinter.ImprimirLogo: IPrinter;
+begin
+
+end;
+
+function TPrinter.ImprimirPagina: IPrinter;
+begin
+
+end;
+
+function TPrinter.Italico: IItalico;
+begin
+
+end;
+
+function TPrinter.LinhaDupla: IPrinter;
+begin
+
+end;
+
+function TPrinter.LinhaSimples: IPrinter;
+begin
+
+end;
+
+function TPrinter.Logo: IPrinter;
+begin
+
+end;
+
+function TPrinter.LogoFatorX: IPrinter;
+begin
+
+end;
+
+function TPrinter.LogoFatorY: IPrinter;
+begin
+
+end;
+
+function TPrinter.LogoKc1: IPrinter;
+begin
+
+end;
+
+function TPrinter.LogoKc2: IPrinter;
+begin
+
+end;
+
+function TPrinter.ModoEspaco: IPrinter;
+begin
+
+end;
+
+function TPrinter.ModoImpressaoConfigurar: IPrinter;
+begin
+
+end;
+
+function TPrinter.ModoImpressaoPagina: IModoImpressaoPagina;
+begin
+
+end;
+
+function TPrinter.ModoPaginaAltura: IPrinter;
+begin
+
+end;
+
+function TPrinter.ModoPaginaDirecao: IPrinter;
+begin
+
+end;
+
+function TPrinter.ModoPaginaEsquerda: IPrinter;
+begin
+
+end;
+
+function TPrinter.ModoPaginaLargura: IPrinter;
+begin
+
+end;
+
+function TPrinter.ModoPaginaTopo: IPrinter;
+begin
+
+end;
+
+function TPrinter.Negrito: INegrito;
+begin
+
+end;
+
+class function TPrinter.New: IPrinter;
+begin
+
+end;
+
+function TPrinter.PularProximaLinha: IPrinter;
+begin
+
+end;
+
+function TPrinter.QrCode: IPrinter;
+begin
+
+end;
+
+function TPrinter.QrCodeError: IPrinter;
+begin
+
+end;
+
+function TPrinter.QrCodeLargua: IPrinter;
+begin
+
+end;
+
+function TPrinter.QrCodeTipo: IPrinter;
+begin
+
+end;
+
+function TPrinter.Reset: IPrinter;
+begin
+
+end;
+
+function TPrinter.RetornaInicioLinha: IPrinter;
+begin
+
+end;
+
+function TPrinter.Sublinhado: ISublinhado;
+begin
+
+end;
+
+function TPrinter.Zera: IPrinter;
+begin
+
+end;
+
+end.

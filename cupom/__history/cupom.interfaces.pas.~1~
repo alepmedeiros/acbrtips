@@ -1,0 +1,12 @@
+unit cupom.interfaces;
+
+interface
+
+type
+  iPrinter = interface
+
+  end;
+
+implementation
+
+end.

@@ -20,6 +20,8 @@ object Form1: TForm1
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 648
+    ExplicitHeight = 347
     object pStatus: TPanel
       Left = 0
       Top = 0
@@ -36,6 +38,7 @@ object Form1: TForm1
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      ExplicitWidth = 648
       object lNumOperacao: TLabel
         Left = 565
         Top = 4
@@ -74,6 +77,7 @@ object Form1: TForm1
       Align = alTop
       Caption = 'Valores da Opera'#231#227'o'
       TabOrder = 1
+      ExplicitWidth = 648
       object Label2: TLabel
         Left = 25
         Top = 24
@@ -235,6 +239,14 @@ object Form1: TForm1
         TabOrder = 6
         OnClick = btEfetuarPagamentosClick
       end
+      object ComboBox1: TComboBox
+        Left = 32
+        Top = 152
+        Width = 145
+        Height = 23
+        TabOrder = 7
+        Text = 'ComboBox1'
+      end
     end
   end
   object pImpressao: TPanel
@@ -246,6 +258,8 @@ object Form1: TForm1
     BevelOuter = bvNone
     Constraints.MinWidth = 230
     TabOrder = 1
+    ExplicitLeft = 648
+    ExplicitHeight = 347
     object mImpressao: TMemo
       Left = 0
       Top = 0
@@ -262,6 +276,7 @@ object Form1: TForm1
       ReadOnly = True
       TabOrder = 0
       WordWrap = False
+      ExplicitHeight = 313
     end
     object pImpressoraBotes: TPanel
       Left = 0
@@ -270,6 +285,7 @@ object Form1: TForm1
       Height = 34
       Align = alBottom
       TabOrder = 1
+      ExplicitTop = 313
       DesignSize = (
         329
         34)
@@ -294,6 +310,8 @@ object Form1: TForm1
     end
   end
   object ACBrPosPrinter1: TACBrPosPrinter
+    Modelo = ppEscPosEpson
+    Porta = 'USB:28e9, 0289'
     ConfigBarras.MostrarCodigo = False
     ConfigBarras.LarguraLinha = 0
     ConfigBarras.Altura = 0

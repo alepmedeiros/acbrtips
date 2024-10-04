@@ -1,0 +1,16 @@
+program naofiscal;
+
+uses
+  Vcl.Forms,
+  Unit1 in 'Unit1.pas' {Form1},
+  frIncluirPagamento in 'frIncluirPagamento.pas' {FormIncluirPagamento},
+  utils in 'utils.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

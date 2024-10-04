@@ -1,0 +1,188 @@
+unit boleto.repository.interfaces;
+
+interface
+
+uses
+  System.Classes;
+
+type
+  ISacado<T> = interface;
+
+  ITitulo = interface
+    function Vencimento(Value: TDateTIme): ITitulo;
+    function DataDocumento(Value: TDateTime): ITitulo;
+    function NumeroDocumento(Value: String): ITitulo;
+    function EspecieDoc(Value: String): ITitulo;
+    function EspecieMod(Value: String): ITitulo;
+    function Aceite(value: Integer): ITitulo;
+    function DataProcessamento(Value: TDateTime): ITitulo;
+    function Carteira(Value: String): ITitulo;
+    function NossoNumero(value: String): ITitulo;
+    function ValorDocumento(Value: Currency): ITitulo;
+    function Sacado : ISacado<ITitulo>;
+    function ValorAbatimento(Value: Currency): ITitulo;
+    function LocalPagamento(Value: String): ITitulo;
+    function ValorMoraJuros(Value: Currency): ITitulo;
+    function ValorDesconto(Value: Currency): ITitulo;
+    function DataMoraJuros(Value: TDateTime): ITitulo;
+    function DataDesconto(Value: TDateTime): ITitulo;
+    function TipoDesconto(Value: Integer): ITitulo;
+    function DataAbatimento(Value: TDateTime): ITitulo;
+    function DataProtesto(Value: TDateTime): ITitulo;
+    function PercentualMulta(Value: Double): ITitulo;
+    function CodigoMoraJuros(Value: Integer): ITitulo;
+    function Mensagem(Value: String): ITitulo;
+    function OcorrenciaOriginal(Value: Integer): ITitulo;
+    function Instrucao1(value: String): ITitulo;
+    function Instrucao2(Value: string): ITitulo;
+    function QtdePagamentoParcial(Value: Integer): ITitulo;
+    function TipoPagamento(Value: Integer): ITitulo;
+    function PercentualMinPagamento(value: Currency): ITitulo;
+    function PercentualMaxPagamento(Value: Currency): ITitulo;
+    function ValorMinPagamento(Value: Currency): ITitulo;
+    function ValorMaxPagamento(Value: Currency): ITitulo;
+    function QrCode(value: String): ITitulo;
+    function Detalhamento(Value: TStrings): ITitulo;
+    function Verso(Value: boolean): ITitulo;
+  end;
+
+  ISacado<T> = interface
+    function NomeSacado(Value: String): ISacado<T>; overload;
+    function NomeSacado: String; overload;
+    function CNPJCPF(value: String): ISacado<T>; overload;
+    function CNPJCPF: String; overload;
+    function Logradouro(Value: string): ISacado<T>; overload;
+    function Logradouro: string; overload;
+    function Numero(Value: String): ISacado<T>; overload;
+    function Numero: String; overload;
+    function Bairro(Value: string): ISacado<T>; overload;
+    function Bairro: string; overload;
+    function Cidade(value: String): ISacado<T>; overload;
+    function Cidade: String; overload;
+    function UF(Value: String): ISacado<T>; overload;
+    function UF: String; overload;
+    function CEP(Value: String): ISacado<T>; overload;
+    function CEP: String; overload;
+    function &End: T;
+  end;
+
+  IBoleto<T> = interface
+    function PrefixArqRemessa(Value: String): IBoleto<T>; overload;
+    function PrefixArqRemessa: String; overload;
+    function LayoutRemessa(Value: Integer): IBoleto<T>; overload;
+    function LayoutRemessa: Integer; overload;
+    function Homologacao(Value: Boolean): IBoleto<T>; overload;
+    function Homologacao: Boolean; overload;
+    function ImprimirMensagemPadrao(value: boolean): IBoleto<T>; overload;
+    function ImprimirMensagemPadrao: Boolean; overload;
+    function LeCedenteRetorno(Value: Boolean): IBoleto<T>; overload;
+    function LeCedenteRetorno: Boolean; overload;
+    function LerNossoNumeroCompleto(Value: Boolean): IBoleto<T>; overload;
+    function LerNossoNumeroCompleto: Boolean; overload;
+    function RemoveAcentosArqRemessa(Value: Boolean): IBoleto<T>; overload;
+    function LogRegistro(value: Boolean): IBoleto<T>; overload;
+    function LogRegistro: Boolean; overload;
+    function PathGravarRegistro(Value: String): IBoleto<T>; overload;
+    function PathGravarRegistro: String; overload;
+    function &End: T;
+  end;
+
+  IBeneficiario<T> = interface
+    function Agencia(Value: String): IBeneficiario<T>;
+    function AgenciaDigito(value: String): IBeneficiario<T>;
+    function Conta(Value: string): IBeneficiario<T>;
+    function ContaDigito(Value: String): IBeneficiario<T>;
+    function DigitoVerificadorAgenciaConta(Value: String): IBeneficiario<T>;
+    function Convenio(Value: String): IBeneficiario<T>;
+    function Modalidade(Value: String): IBeneficiario<T>;
+    function Operacao(Value: String): IBeneficiario<T>;
+    function CodigoTransmissao(Value: string): IBeneficiario<T>;
+    function CodigoCedente(Value: String): IBeneficiario<T>;
+    function TipoInscricao(Value: Integer): IBeneficiario<T>;
+    function TipoDocumento(Value: Integer): IBeneficiario<T>;
+    function IdentDistribuicao(Value: Integer): IBeneficiario<T>;
+    function ResponEmissao(Value: Integer): IBeneficiario<T>;
+    function CaracTitulo(Value: Integer): IBeneficiario<T>;
+    function TipoCarteira(Value: Integer): IBeneficiario<T>;
+    function CNPJCPF(Value: String): IBeneficiario<T>;
+    function Nome(Value: String): IBeneficiario<T>;
+    function FantasiaCedente(Value: String): IBeneficiario<T>;
+    function Logradouro(Value: String): IBeneficiario<T>;
+    function NumeroRes(Value: String): IBeneficiario<T>;
+    function Complemento(Value: String): IBeneficiario<T>;
+    function Bairro(Value: String): IBeneficiario<T>;
+    function Cidade(Value: String): IBeneficiario<T>;
+    function UF(Value: String): IBeneficiario<T>;
+    function CEP(Value: String): IBeneficiario<T>;
+    function Telefone(Value: String): IBeneficiario<T>;
+  end;
+
+  IBanco<T> = interface
+    function TipoCobranca(Value: Integer): IBanco<T>; overload;
+    function TipoCobranca: Integer; overload;
+    function LayoutVersaoArquivo(Value: Integer): IBanco<T>; overload;
+    function LayoutVersaoArquivo: Integer; overload;
+    function LayoutVersaoLote(Value: Integer): IBanco<T>; overload;
+    function LayoutVersaoLote: Integer; overload;
+    function CIP(Value: String): IBanco<T>; overload;
+    function CIP: String; overload;
+    function DensidadeGravacao(Value: String): IBanco<T>; overload;
+    function DensidadeGravacao: String; overload;
+    function LocalPagamento(Value: string): IBanco<T>; overload;
+    function &End: T;
+  end;
+
+  IBeneficiarioWS<T> = interface
+    function ClientID(Value: String): IBeneficiarioWS<T>; overload;
+    function ClientID: String; overload;
+    function ClientSecret(Value: String): IBeneficiarioWS<T>; overload;
+    function ClientSecret: String; overload;
+    function KeyUser(Value: String): IBeneficiarioWS<T>; overload;
+    function KeyUser: String; overload;
+    function Scope(Value: String): IBeneficiarioWS<T>; overload;
+    function Scope: String; overload;
+    function IndicadorPix(Value: Boolean): IBeneficiarioWS<T>; overload;
+    function IndicadorPix: Boolean; overload;
+    function &End: T;
+  end;
+
+  IWebService<T> = interface
+    function Ambiente(Value: Integer): IWebService<T>; overload;
+    function Ambiente: Integer; overload;
+    function SSLHttpLib(Value: Integer): IWebService<T>; overload;
+    function SSLHttpLib: Integer; overload;
+    function &End: T;
+  end;
+
+  IEmail<T> = interface
+    function From(Value: String): IEmail<T>; overload;
+    function From: String; overload;
+    function FromName(Value: Integer): IEmail<T>; overload;
+    function FromName: Integer; overload;
+    function Host(Value: string): IEmail<T>; overload;
+    function Host: string; overload;
+    function Port(Value: String): IEmail<T>; overload;
+    function Port: String; overload;
+    function SetTLS(Value: Boolean): IEmail<T>; overload;
+    function SetTLS: Boolean; overload;
+    function SetSSL(Value: Boolean): IEmail<T>; overload;
+    function SetSSL: Boolean; overload;
+    function Username(Value: String): IEmail<T>; overload;
+    function Username: String; overload;
+    function Password(Value: String): IEmail<T>; overload;
+    function Password: String; overload;
+    function &End: T;
+  end;
+
+  IConfiguracao = interface
+    function Boleto: IBoleto<IConfiguracao>;
+    function Beneficiario: IBeneficiario<IConfiguracao>;
+    function Banco: IBanco<IConfiguracao>;
+    function BeneficiarioWS: IBeneficiarioWS<IConfiguracao>;
+    function WebService: IWebService<IConfiguracao>;
+    function Email: IEmail<IConfiguracao>;
+  end;
+
+implementation
+
+end.

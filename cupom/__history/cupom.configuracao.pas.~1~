@@ -1,0 +1,49 @@
+unit cupom.configuracao;
+
+interface
+
+uses
+  cupom.interfaces;
+
+type
+  TConfiguracao = class(TInterfacedObject, IConfiguracao)
+  private
+    FPrinter: IPrinter;
+
+    constructor Create(Printer: IPrinter);
+  public
+    class function New(Printer: IPrinter): IConfiguracao;
+
+    function Value(aValue: String): IConfiguracao;
+    function &End: IPrinter;
+  end;
+
+implementation
+
+{ TConfiguracao }
+
+constructor TConfiguracao.Create(Printer: IPrinter);
+begin
+  FPrinter := Printer;
+end;
+
+function TConfiguracao.&End: IPrinter;
+begin
+  FPrinter.AddTexto('</mp>');
+  Result := Self;
+end;
+
+class function TConfiguracao.New(Printer: IPrinter): IConfiguracao;
+begin
+  Result := Self.Create(Printer);
+end;
+
+function TConfiguracao.Value(aValue: String): IConfiguracao;
+begin
+  Result := Self;
+  FPrinter.AddTexto('<mp>');
+  FPrinter.AddTexto(aValue);
+end;
+
+end.
+

@@ -1,0 +1,49 @@
+unit cupom.condensado;
+
+interface
+
+uses
+  cupom.interfaces;
+
+type
+  TCondensado = class(TInterfacedObject, ICondensado)
+  private
+    FPrinter: IPrinter;
+
+    constructor Create(Printer: IPrinter);
+  public
+    class function New(Printer: IPrinter): ICondensado;
+
+    function Value(aValue: String): ICondensado;
+    function &End: IPrinter;
+  end;
+
+implementation
+
+{ TCondensado }
+
+constructor TCondensado.Create(Printer: IPrinter);
+begin
+  FPrinter := Printer;
+end;
+
+function TCondensado.&End: IPrinter;
+begin
+  FPrinter.AddTexto('</s>');
+  Result := Self;
+end;
+
+class function TCondensado.New(Printer: IPrinter): ICondensado;
+begin
+  Result := Self.Create(Printer);
+end;
+
+function TCondensado.Value(aValue: String): ICondensado;
+begin
+  Result := Self;
+  FPrinter.AddTexto('<s>');
+  FPrinter.AddTexto(aValue);
+end;
+
+end.
+

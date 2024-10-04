@@ -1,0 +1,49 @@
+unit cupom.alinhamentocentro;
+
+interface
+
+uses
+  cupom.interfaces;
+
+type
+  TAlinhamentoCentro = class(TInterfacedObject, IAlinhamentoCentro)
+  private
+    FPrinter: IPrinter;
+
+    constructor Create(Printer: IPrinter);
+  public
+    class function New(Printer: IPrinter): IAlinhamentoCentro;
+
+    function Value(aValue: String): IAlinhamentoCentro;
+    function &End: IPrinter;
+  end;
+
+implementation
+
+{ TAlinhamentoCentro }
+
+constructor TAlinhamentoCentro.Create(Printer: IPrinter);
+begin
+  FPrinter := Printer;
+end;
+
+function TAlinhamentoCentro.&End: IPrinter;
+begin
+  FPrinter.AddTexto('</ce>');
+  Result := FPrinter;
+end;
+
+class function TAlinhamentoCentro.New(Printer: IPrinter): IAlinhamentoCentro;
+begin
+  Result := Self.Create(Printer);
+end;
+
+function TAlinhamentoCentro.Value(aValue: String): IAlinhamentoCentro;
+begin
+  Result := Self;
+  FPrinter.AddTexto('<ce>');
+  FPrinter.AddTexto(aValue);
+end;
+
+end.
+

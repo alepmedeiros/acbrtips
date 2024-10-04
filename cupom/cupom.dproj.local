@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/01/16 09:59:19.000.774,=C:\repositorio\Unit3.pas</Transaction>
+    <Transaction>2024/01/16 10:15:07.000.618,C:\repositorio\Project2.dproj=C:\repositorio\cupom.dproj</Transaction>
+    <Transaction>2024/01/16 10:15:15.000.166,=C:\repositorio\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 10:31:22.000.018,C:\repositorio\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.interfaces.pas</Transaction>
+    <Transaction>2024/01/16 10:31:30.000.837,C:\repositorio\Unit3.fmx=C:\repositorio\acbrtips\cupom\Unit3.fmx</Transaction>
+    <Transaction>2024/01/16 10:31:30.000.837,C:\repositorio\Unit3.pas=C:\repositorio\acbrtips\cupom\Unit3.pas</Transaction>
+    <Transaction>2024/01/16 10:31:32.000.906,C:\repositorio\cupom.dproj=C:\repositorio\acbrtips\cupom\cupom.dproj</Transaction>
+    <Transaction>2024/01/16 11:16:34.000.865,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:24:25.000.946,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.expandir.pas</Transaction>
+    <Transaction>2024/01/16 11:27:45.000.976,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:30:53.000.491,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.alturadupla.pas</Transaction>
+    <Transaction>2024/01/16 11:31:01.000.772,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:33:00.000.588,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.negrito.pas</Transaction>
+    <Transaction>2024/01/16 11:33:10.000.723,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:35:33.000.129,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.sublinhado.pas</Transaction>
+    <Transaction>2024/01/16 11:35:42.000.276,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:36:18.000.642,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.condensado.pas</Transaction>
+    <Transaction>2024/01/16 11:36:31.000.802,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:37:25.000.798,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.italico.pas</Transaction>
+    <Transaction>2024/01/16 11:37:33.000.245,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:38:05.000.619,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.fonteinvertida.pas</Transaction>
+    <Transaction>2024/01/16 11:38:31.000.965,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:38:56.000.506,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.alinhamentoesquerda.pas</Transaction>
+    <Transaction>2024/01/16 11:39:13.000.782,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:40:26.000.860,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.alinhamentodireita.pas</Transaction>
+    <Transaction>2024/01/16 11:40:40.000.702,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:41:04.000.723,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.alinhamentocentro.pas</Transaction>
+    <Transaction>2024/01/16 11:41:21.000.835,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:41:51.000.238,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.modoimpressaopagina.pas</Transaction>
+    <Transaction>2024/01/16 11:42:13.000.569,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:42:43.000.487,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.configuracao.pas</Transaction>
+    <Transaction>2024/01/16 11:48:14.000.084,=C:\repositorio\acbrtips\cupom\Unit4.pas</Transaction>
+    <Transaction>2024/01/16 11:49:31.000.822,C:\repositorio\acbrtips\cupom\Unit4.pas=C:\repositorio\acbrtips\cupom\cupom.printer.pas</Transaction>
+  </Transactions>
+</BorlandProject>
