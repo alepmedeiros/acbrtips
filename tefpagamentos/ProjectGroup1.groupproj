@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{25ECBB60-7A90-497D-B25F-67513AEA7ACB}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TEFACDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\ACBr\Exemplos\ACBrTEFD\NaoFiscal\Delphi\TEFDDemoNF.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TEFACDemo">
+        <MSBuild Projects="TEFACDemo.dproj"/>
+    </Target>
+    <Target Name="TEFACDemo:Clean">
+        <MSBuild Projects="TEFACDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEFACDemo:Make">
+        <MSBuild Projects="TEFACDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TEFDDemoNF">
+        <MSBuild Projects="..\ACBr\Exemplos\ACBrTEFD\NaoFiscal\Delphi\TEFDDemoNF.dproj"/>
+    </Target>
+    <Target Name="TEFDDemoNF:Clean">
+        <MSBuild Projects="..\ACBr\Exemplos\ACBrTEFD\NaoFiscal\Delphi\TEFDDemoNF.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TEFDDemoNF:Make">
+        <MSBuild Projects="..\ACBr\Exemplos\ACBrTEFD\NaoFiscal\Delphi\TEFDDemoNF.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TEFACDemo;TEFDDemoNF"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TEFACDemo:Clean;TEFDDemoNF:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TEFACDemo:Make;TEFDDemoNF:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
